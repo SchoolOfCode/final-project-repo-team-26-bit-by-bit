@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/users', usersRouter);
 
-app.use(function (req, res, next) {
+app.use(async function (req, res) {
   res.status(404).json({message: "We couldn't find what you were looking for 😞"})
 })
 
