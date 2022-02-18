@@ -1,4 +1,4 @@
-import query from "../../db/connection";
+import query from "../../db/connection.js";
 
 export async function getAllGoals() {
     const result = await query(`SELECT * FROM goals;`);
@@ -6,6 +6,7 @@ export async function getAllGoals() {
   }
   
   export async function createGoals(body) {
+      const user_id = body.user_id;
     const goals_id = body.goals_id;
     const text= body.text;
     const priority= body.priority;
@@ -14,8 +15,9 @@ export async function getAllGoals() {
     const isrecurring = body.isrecurring;
     const amount = body.amount;
       const data = await query(
-      `INSERT INTO goals (goals_id, text, priority, due_date, isCompleted, isRecurring, amount) VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING text;`,
-      [goals_id,
+      `INSERT INTO goals (user_id, goals_id, text, priority, due_date, isCompleted, isRecurring, amount) VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING text;`,
+      [user_id,
+        goals_id,
         text,
         priority,
         due_date,

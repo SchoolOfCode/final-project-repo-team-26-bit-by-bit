@@ -2,7 +2,7 @@ import express from "express";
 import {getAllUsers,createUser} from "../models/users.js";
 import { getAllToDo, createToDoList } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
-import { getAllCustomise, createCustomise } from "../models/customise/index.js";
+import { getAllCustomise, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 const router = express.Router();
 
 /* GET users listing. */
@@ -24,7 +24,7 @@ router.post("/", async function (req, res) {
   });
 });
 
-router.get("/reminders", async function (req, res) {
+router.get("/:id/reminders", async function (req, res) {
   const todo_list = await getAllToDo();
 
   res.json({
@@ -33,7 +33,7 @@ router.get("/reminders", async function (req, res) {
   });
 });
 
-router.post("/reminders", async function (req, res) {
+router.post("/:id/reminders", async function (req, res) {
   const body = req.body;
   const created = await createToDoList(body);
 
@@ -43,7 +43,7 @@ router.post("/reminders", async function (req, res) {
   });
 });
 
-router.get("/customise", async function (req, res) {
+router.get("/:id/customise", async function (req, res) {
   const customise = await getAllCustomise();
 
   res.json({
@@ -52,7 +52,7 @@ router.get("/customise", async function (req, res) {
   });
 });
 
-router.post("/customise", async function (req, res) {
+router.post("/:id/customise", async function (req, res) {
   const body = req.body;
   const created = await createCustomise(body);
 
@@ -62,7 +62,27 @@ router.post("/customise", async function (req, res) {
   });
 });
 
-router.get("/goals", async function (req, res) {
+router.put("/:id/customise/:id", async function (req, res ){
+  const body = req.body;
+  const update = await updateCustomise(body);
+
+  res.json({
+    success: true,
+    payload: update,
+  })
+})
+
+router.delete("/:id/customise/", async function (req, res){
+  const id = Number(req.params.id);
+  const remove = await DeleteCustomise(id);
+
+  res.json({
+    success: true,
+    payload: remove,
+  })
+})
+
+router.get("/:id/goals", async function (req, res) {
   const goals = await getAllGoals();
 
   res.json({
@@ -71,7 +91,7 @@ router.get("/goals", async function (req, res) {
   });
 });
 
-router.post("/goals", async function (req, res) {
+router.post("/:id/goals", async function (req, res) {
   const body = req.body;
   const create = await createGoals(body);
   res.json({
@@ -80,7 +100,7 @@ router.post("/goals", async function (req, res) {
   });
 });
 
-router.put("/goals/:id", async function (req, res) {
+router.put("/:id/goals/:id", async function (req, res) {
   const body = req.body;
   const update = await updateGoals(body);
   res.json({
@@ -89,7 +109,7 @@ router.put("/goals/:id", async function (req, res) {
   });
 });
 
-router.delete("/goals/:id", async function (req, res) {
+router.delete("/:id/goals/", async function (req, res) {
   const id = Number(req.params.id);
   const removed = await DeleteGoals(id);
 
