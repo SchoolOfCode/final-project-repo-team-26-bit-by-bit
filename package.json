@@ -7,7 +7,8 @@
     "start": "node ./bin/www.js",
     "db:createusers": "node -r dotenv/config ./db/scripts/createTable.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js app.test.js",
+    "test1": "mocha 'test/apitest.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -19,8 +20,9 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.15",
     "jest": "^27.4.5",
+    "mocha": "^9.2.0",
+    "nodemon": "^2.0.15",
     "supertest": "^6.1.6"
   }
 }
