@@ -1,5 +1,13 @@
 import pg from "pg";
 
-const pool = new pg.Pool();
+import { DB_HOST } from "../config";
+const pool = new pg.Pool(
+{
+    connectionString: DB_HOST,
+    ssl: {rejectUnauthorized: false}
+
+
+}
+);
 
 export default pool;
