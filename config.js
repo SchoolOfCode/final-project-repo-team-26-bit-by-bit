@@ -1,1 +1,4 @@
-export const DB_HOST = process.env.DATABASE_URL;
+
+export const db = {
+    database: process.env.DATABASE_URL
+}

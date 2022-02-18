@@ -1,13 +1,14 @@
 import pg from "pg";
+import {db} from "../config.js"
 
-import { DB_HOST } from "../config";
-const pool = new pg.Pool(
-{
-    connectionString: DB_HOST,
+const pool = new pg.Pool({
+    connectionString: db.database,
     ssl: {rejectUnauthorized: false}
+});
 
+export default function query (text, params){
 
+    return pool.query(text, params)
 }
-);
 
-export default pool;
+
