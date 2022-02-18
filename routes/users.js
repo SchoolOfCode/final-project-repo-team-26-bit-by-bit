@@ -1,6 +1,6 @@
 import express from "express";
 import {getAllUsers,createUser} from "../models/users.js";
-import { getAllToDo, createToDoList } from "../models/reminders/index.js";
+import { getAllToDo, createToDoList, DeleteToDo } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
 import { getAllCustomise, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 const router = express.Router();
@@ -25,7 +25,8 @@ router.post("/", async function (req, res) {
 });
 
 router.get("/:id/reminders", async function (req, res) {
-  const todo_list = await getAllToDo();
+  const id = Number(req.params.id)
+  const todo_list = await getAllToDo(id);
 
   res.json({
     success: true,
@@ -43,8 +44,19 @@ router.post("/:id/reminders", async function (req, res) {
   });
 });
 
+router.delete("/:id/reminders/:id", async function (req, res){
+  const id = Number(req.params.id)
+  const remove = await DeleteToDo(id);
+
+  res.json({
+    success: true,
+    payload: remove,
+  })
+})
+
 router.get("/:id/customise", async function (req, res) {
-  const customise = await getAllCustomise();
+  const id = Number(req.params.id)
+  const customise = await getAllCustomise(id);
 
   res.json({
     success: true,
@@ -83,7 +95,8 @@ router.delete("/:id/customise/", async function (req, res){
 })
 
 router.get("/:id/goals", async function (req, res) {
-  const goals = await getAllGoals();
+  const id = Number(req.params.id)
+  const goals = await getAllGoals(id);
 
   res.json({
     success: true,

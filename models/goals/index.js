@@ -1,7 +1,7 @@
 import query from "../../db/connection.js";
 
-export async function getAllGoals() {
-    const result = await query(`SELECT * FROM goals;`);
+export async function getAllGoals(id) {
+    const result = await query(`SELECT * FROM goals WHERE user_id = $1;`, [id]);
     return result.rows;
   }
   

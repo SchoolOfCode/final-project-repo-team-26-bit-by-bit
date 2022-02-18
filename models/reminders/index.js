@@ -1,6 +1,6 @@
 import query from "../../db/connection.js";
-export async function getAllToDo() {
-    const result = await query(`SELECT * FROM todo_list;`);
+export async function getAllToDo(id) {
+    const result = await query(`SELECT * FROM todo_list WHERE user_id= $1;`, [id]);
     return result.rows;
   }
   
@@ -30,4 +30,13 @@ export async function getAllToDo() {
    
   
     return data.rows;
+  }
+
+
+  export async function DeleteToDo(id){
+  
+    const data = await query(`DELETE FROM todo_list WHERE todo_id = $1`, [id])
+  
+    return data.rows
+  
   }
