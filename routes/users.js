@@ -1,16 +1,8 @@
 import express from "express";
-import {
-  getAllUsers,
-  createUser,
-  getAllToDo,
-  createToDoList,
-  getAllCustomise,
-  createCustomise,
-  getAllGoals,
-  createGoals,
-  DeleteGoals,
-  updateGoals,
-} from "../models/users.js";
+import {getAllUsers,createUser} from "../models/users.js";
+import { getAllToDo, createToDoList } from "../models/reminders/index.js";
+import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
+import { getAllCustomise, createCustomise } from "../models/customise/index.js";
 const router = express.Router();
 
 /* GET users listing. */
