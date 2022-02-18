@@ -1,12 +1,13 @@
-import query from "../connection.js"
+import query from "../../connection.js";
 
 const sqlString = `CREATE TABLE users(
-  user_id int PRIMARY KEY,
+  user_id SERIAL PRIMARY KEY,
   full_name varchar(255),
   created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE todo_list(
+  user_id int,
   todo_id int,
   text varchar(255),
   priority varchar(255),
@@ -19,6 +20,7 @@ CREATE TABLE todo_list(
 );
 
 CREATE TABLE goals (
+  user_id int,
   goals_id int,
   text varchar(255),
   priority varchar(255),
@@ -30,6 +32,7 @@ CREATE TABLE goals (
 );
 
 CREATE TABLE customise(
+  user_id int,
   customise_id int,
   medication boolean,
   appointment boolean,
@@ -38,11 +41,11 @@ CREATE TABLE customise(
   isSimple boolean
 );
 
-ALTER TABLE todo_list ADD FOREIGN KEY (todo_id) REFERENCES users (user_id);
+ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
-ALTER TABLE goals ADD FOREIGN KEY (goals_id) REFERENCES users (user_id);
+ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
-ALTER TABLE customise ADD FOREIGN KEY (customise_id) REFERENCES users (user_id);`
+ALTER TABLE customise ADD FOREIGN KEY (user_id) REFERENCES users (user_id);`
 
 
 async function createTable (){

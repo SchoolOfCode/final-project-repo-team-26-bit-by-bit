@@ -1,16 +1,8 @@
 import express from "express";
-import {
-  getAllUsers,
-  createUser,
-  getAllToDo,
-  createToDoList,
-  getAllCustomise,
-  createCustomise,
-  getAllGoals,
-  createGoals,
-  DeleteGoals,
-  updateGoals,
-} from "../models/users.js";
+import {getAllUsers,createUser, getUserById} from "../models/users.js";
+import { getAllToDo, createToDoList, DeleteToDo } from "../models/reminders/index.js";
+import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
+import { getAllCustomise, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 const router = express.Router();
 
 /* GET users listing. */
@@ -23,6 +15,15 @@ router.get("/", async function (req, res) {
   });
 });
 
+router.get("/:id", async function (req, res){
+  const id = Number(req.params.id);
+  const body = await getUserById(id);
+  res.json({
+    sucess:true,
+    payload:body,
+  })
+})
+
 router.post("/", async function (req, res) {
   const body = req.body;
   const create = await createUser(body);
@@ -32,8 +33,9 @@ router.post("/", async function (req, res) {
   });
 });
 
-router.get("/reminders", async function (req, res) {
-  const todo_list = await getAllToDo();
+router.get("/:id/reminders", async function (req, res) {
+  const id = Number(req.params.id)
+  const todo_list = await getAllToDo(id);
 
   res.json({
     success: true,
@@ -41,7 +43,7 @@ router.get("/reminders", async function (req, res) {
   });
 });
 
-router.post("/reminders", async function (req, res) {
+router.post("/:id/reminders", async function (req, res) {
   const body = req.body;
   const created = await createToDoList(body);
 
@@ -51,8 +53,19 @@ router.post("/reminders", async function (req, res) {
   });
 });
 
-router.get("/customise", async function (req, res) {
-  const customise = await getAllCustomise();
+router.delete("/:id/reminders/:id", async function (req, res){
+  const id = Number(req.params.id)
+  const remove = await DeleteToDo(id);
+
+  res.json({
+    success: true,
+    payload: remove,
+  })
+})
+
+router.get("/:id/customise", async function (req, res) {
+  const id = Number(req.params.id)
+  const customise = await getAllCustomise(id);
 
   res.json({
     success: true,
@@ -60,7 +73,7 @@ router.get("/customise", async function (req, res) {
   });
 });
 
-router.post("/customise", async function (req, res) {
+router.post("/:id/customise", async function (req, res) {
   const body = req.body;
   const created = await createCustomise(body);
 
@@ -70,8 +83,29 @@ router.post("/customise", async function (req, res) {
   });
 });
 
-router.get("/goals", async function (req, res) {
-  const goals = await getAllGoals();
+router.put("/:id/customise/:id", async function (req, res ){
+  const body = req.body;
+  const update = await updateCustomise(body);
+
+  res.json({
+    success: true,
+    payload: update,
+  })
+})
+
+router.delete("/:id/customise/", async function (req, res){
+  const id = Number(req.params.id);
+  const remove = await DeleteCustomise(id);
+
+  res.json({
+    success: true,
+    payload: remove,
+  })
+})
+
+router.get("/:id/goals", async function (req, res) {
+  const id = Number(req.params.id)
+  const goals = await getAllGoals(id);
 
   res.json({
     success: true,
@@ -79,7 +113,7 @@ router.get("/goals", async function (req, res) {
   });
 });
 
-router.post("/goals", async function (req, res) {
+router.post("/:id/goals", async function (req, res) {
   const body = req.body;
   const create = await createGoals(body);
   res.json({
@@ -88,7 +122,7 @@ router.post("/goals", async function (req, res) {
   });
 });
 
-router.put("/goals/:id", async function (req, res) {
+router.put("/:id/goals/:id", async function (req, res) {
   const body = req.body;
   const update = await updateGoals(body);
   res.json({
@@ -97,7 +131,7 @@ router.put("/goals/:id", async function (req, res) {
   });
 });
 
-router.delete("/goals/:id", async function (req, res) {
+router.delete("/:id/goals/", async function (req, res) {
   const id = Number(req.params.id);
   const removed = await DeleteGoals(id);
 
