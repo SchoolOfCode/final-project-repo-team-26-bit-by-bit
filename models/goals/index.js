@@ -15,7 +15,7 @@ export async function getAllGoals(id) {
     const isrecurring = body.isrecurring;
     const amount = body.amount;
       const data = await query(
-      `INSERT INTO goals (user_id, goals_id, text, priority, due_date, isCompleted, isRecurring, amount) VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING text;`,
+      `INSERT INTO goals (user_id, goals_id, text, priority, due_date, isCompleted, isRecurring, amount) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8) RETURNING text;`,
       [user_id,
         goals_id,
         text,

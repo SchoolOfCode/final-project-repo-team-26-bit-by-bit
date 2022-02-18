@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllUsers,createUser} from "../models/users.js";
+import {getAllUsers,createUser, getUserById} from "../models/users.js";
 import { getAllToDo, createToDoList, DeleteToDo } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
 import { getAllCustomise, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
@@ -14,6 +14,15 @@ router.get("/", async function (req, res) {
     payload: body,
   });
 });
+
+router.get("/:id", async function (req, res){
+  const id = Number(req.params.id);
+  const body = await getUserById(id);
+  res.json({
+    sucess:true,
+    payload:body,
+  })
+})
 
 router.post("/", async function (req, res) {
   const body = req.body;

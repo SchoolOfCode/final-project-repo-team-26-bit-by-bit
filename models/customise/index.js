@@ -15,7 +15,7 @@ export async function getAllCustomise(id) {
     const isdark = body.isdark;
     const issimple = body.issimple;
       const data = await query(
-      `INSERT INTO customise (user_id,customise_id,medication, appointment,exercise, isDark, isSimple) VALUES ( $1, $2, $3, $4, $5, $6) RETURNING exercise;`,
+      `INSERT INTO customise (user_id,customise_id,medication, appointment,exercise, isDark, isSimple) VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING exercise;`,
       [user_id,
         customise_id,
         medication,
