@@ -1,7 +1,7 @@
 import express from "express";
 import {getAllUsers,createUser, getUserById} from "../models/users.js";
 import {getAllToDo,getTodoByID, createToDoList,updateToDo, DeleteToDo } from "../models/reminders/index.js";
-import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
+import { getAllGoals, createGoals, updateGoals, DeleteGoals, getGoalsBYId } from "../models/goals/index.js";
 import { getCustomiseByUsers, getCustomiseByID, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 
 const router = express.Router();
@@ -155,6 +155,15 @@ router.get("/:id/goals", async function (req, res) {
   });
 });
 
+router.get("/:id/goals/:id", async function (req, res) {
+  const id = Number(req.params.id)
+  const goals = await getGoalsBYId(id);
+
+  res.json({
+    success: true,
+    payload: goals,
+  });
+});
 router.post("/:id/goals", async function (req, res) {
   const body = req.body;
   const create = await createGoals(body);
