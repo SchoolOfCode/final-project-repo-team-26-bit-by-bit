@@ -2,7 +2,7 @@ import express from "express";
 import {getAllUsers,createUser, getUserById} from "../models/users.js";
 import { getAllToDo, createToDoList, DeleteToDo } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
-import { getAllCustomise, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
+import { getCustomiseByUsers, getCustomiseByID, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 const router = express.Router();
 
 /* GET users listing. */
@@ -65,8 +65,18 @@ router.delete("/:id/reminders/:id", async function (req, res){
 
 router.get("/:id/customise", async function (req, res) {
   const id = Number(req.params.id)
-  const customise = await getAllCustomise(id);
+  const customise = await getCustomiseByUsers(id);
 
+  res.json({
+    success: true,
+    payload: customise,
+  });
+});
+
+router.get("/:id/customise/:id", async function (req, res) {
+  const id = Number(req.params.id)
+  const customise = await getCustomiseByID(id);
+console.log("Just a check: " + id)
   res.json({
     success: true,
     payload: customise,

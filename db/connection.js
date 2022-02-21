@@ -1,7 +1,7 @@
 import pg from "pg";
 import {db} from "../config.js"
 
-const pool = new pg.Pool({
+export const pool = new pg.Pool({
     connectionString: db.database,
     ssl: {rejectUnauthorized: false}
 });

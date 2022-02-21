@@ -1,7 +1,14 @@
 import query from "../../db/connection.js";
 
-export async function getAllCustomise(id) {
+export async function getCustomiseByUsers(id) {
     const result = await query(`SELECT * FROM customise WHERE user_id = $1;`, [id]);
+    return result.rows;
+  }
+  
+  export async function getCustomiseByID(id) { 
+    const user_id = id.user_id;
+    const customise_id = id.customise_id;
+    const result = await query(`SELECT * FROM customise WHERE user_id = $1 AND customise_id = $2;`, [user_id, customise_id]);
     return result.rows;
   }
   
