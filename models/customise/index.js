@@ -6,9 +6,7 @@ export async function getCustomiseByUsers(id) {
   }
   
   export async function getCustomiseByID(id) { 
-    const user_id = id.user_id;
-    const customise_id = id.customise_id;
-    const result = await query(`SELECT * FROM customise WHERE user_id = $1 AND customise_id = $2;`, [user_id, customise_id]);
+    const result = await query(`SELECT * FROM customise WHERE customise_id = $1;`, [id]);
     return result.rows;
   }
   
@@ -37,7 +35,7 @@ export async function getCustomiseByUsers(id) {
   }
 
   export async function updateCustomise(body) {
-    
+    const user_id = body.user_id;
     const medication= body.medication;
     const appointment= body.appointment;
     const  exercise = body.exercise;
@@ -45,8 +43,8 @@ export async function getCustomiseByUsers(id) {
     const issimple = body.issimple;
     const customise_id = body.customise_id;
       const data = await query(
-      `UPDATE customise SET medication=$1, appointment=$2, exercise=$3, isDark=$4, isSimple=$5 WHERE customise_id = $6 RETURNING appointment;`,
-      [
+      `UPDATE customise SET user_id = $1, medication=$2, appointment=$3, exercise=$4, isDark=$5, isSimple=$6 WHERE customise_id = $7 RETURNING appointment;`,
+      [user_id,
         medication,
 appointment,
 exercise,
