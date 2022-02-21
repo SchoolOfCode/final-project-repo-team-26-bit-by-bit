@@ -5,8 +5,8 @@ export async function getAllGoals(id) {
     return result.rows;
   }
 
-  export async function getGoalsBYId(id) {
-    const result = await query(`SELECT * FROM goals WHERE goals_id  = $1;`, [id]);
+  export async function getGoalsBYId(goals_id, user_id) {
+    const result = await query(`SELECT * FROM goals WHERE goals_id  = $1 and user_id = $2;`, [goals_id, user_id]);
     return result.rows;
   }
   
@@ -60,9 +60,9 @@ export async function getAllGoals(id) {
   
     return data.rows;
   }
-  export async function DeleteGoals(id){
+  export async function DeleteGoals(goals_id, user_id){
   
-    const data = await query(`DELETE FROM goals WHERE goals_id = $1`, [id])
+    const data = await query(`DELETE FROM goals WHERE goals_id = $1 AND user_id=$2`, [goals_id, user_id])
   
     return data.rows
   

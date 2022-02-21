@@ -4,8 +4,8 @@ export async function getAllToDo(id) {
     return result.rows;
   }
   
-  export async function getTodoByID(id) { 
-    const result = await query(`SELECT * FROM todo_list WHERE todo_id = $1;`, [id]);
+  export async function getTodoByID(todo_id, user_id) { 
+    const result = await query(`SELECT * FROM todo_list WHERE todo_id = $1 AND user_id=$2;`, [todo_id, user_id]);
     return result.rows;
   }
   
@@ -65,9 +65,9 @@ export async function getAllToDo(id) {
       }
     
 
-  export async function DeleteToDo(id){
+  export async function DeleteToDo(todo_id, user_id){
   
-    const data = await query(`DELETE FROM todo_list WHERE todo_id = $1`, [id])
+    const data = await query(`DELETE FROM todo_list WHERE todo_id = $1 AND user_id=$2`, [todo_id, user_id])
   
     return data.rows
   

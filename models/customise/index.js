@@ -5,8 +5,8 @@ export async function getCustomiseByUsers(id) {
     return result.rows;
   }
   
-  export async function getCustomiseByID(id) { 
-    const result = await query(`SELECT * FROM customise WHERE customise_id = $1;`, [id]);
+  export async function getCustomiseByID(customise_id, user_id ) { 
+    const result = await query(`SELECT * FROM customise WHERE customise_id = $1 AND user_id = $2;`, [customise_id, user_id]);
     return result.rows;
   }
   
@@ -56,9 +56,9 @@ customise_id,]
   
     return data.rows;
   }
-  export async function DeleteCustomise(id){
+  export async function DeleteCustomise(customise_id, user_id){
   
-    const data = await query(`DELETE FROM customise WHERE customise_id = $1`, [id])
+    const data = await query(`DELETE FROM customise WHERE customise_id = $1 AND user_id = $2`, [customise_id, user_id])
   
     return data.rows
   
