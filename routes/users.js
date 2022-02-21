@@ -1,8 +1,9 @@
 import express from "express";
 import {getAllUsers,createUser, getUserById} from "../models/users.js";
-import { getAllToDo, createToDoList, DeleteToDo } from "../models/reminders/index.js";
+import {getAllToDo,getTodoByID, createToDoList,updateToDo, DeleteToDo } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals } from "../models/goals/index.js";
 import { getCustomiseByUsers, getCustomiseByID, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
+
 const router = express.Router();
 
 /* GET users listing. */
@@ -15,6 +16,7 @@ router.get("/", async function (req, res) {
   });
 });
 
+/* GET users by ID. */
 router.get("/:id", async function (req, res){
   const id = Number(req.params.id);
   const body = await getUserById(id);
@@ -24,6 +26,8 @@ router.get("/:id", async function (req, res){
   })
 })
 
+
+/* POST new users to users table. */
 router.post("/", async function (req, res) {
   const body = req.body;
   const create = await createUser(body);
@@ -33,6 +37,7 @@ router.post("/", async function (req, res) {
   });
 });
 
+/* GET reminders by user ID. */
 router.get("/:id/reminders", async function (req, res) {
   const id = Number(req.params.id)
   const todo_list = await getAllToDo(id);
@@ -43,6 +48,20 @@ router.get("/:id/reminders", async function (req, res) {
   });
 });
 
+
+/* GET reminders by user ID and todo_id. */
+router.get("/:id/reminders/:id", async function (req, res) {
+  const id = Number(req.params.id)
+  const todo_list = await getTodoByID(id);
+
+  res.json({
+    success: true,
+    payload: todo_list,
+  });
+});
+
+
+/* POST reminders by user ID. */
 router.post("/:id/reminders", async function (req, res) {
   const body = req.body;
   const created = await createToDoList(body);
@@ -53,6 +72,18 @@ router.post("/:id/reminders", async function (req, res) {
   });
 });
 
+/* Update reminders by user ID and todo_id. */
+router.put("/:id/reminders/:id", async function (req, res) {
+  const body = req.body;
+  const updated = await updateToDo(body);
+
+  res.json({
+    success: true,
+    payload: updated,
+  });
+});
+
+/* DELETE reminders by user ID and todo_id. */
 router.delete("/:id/reminders/:id", async function (req, res){
   const id = Number(req.params.id)
   const remove = await DeleteToDo(id);
@@ -63,6 +94,7 @@ router.delete("/:id/reminders/:id", async function (req, res){
   })
 })
 
+/* GET reminders by user ID. */
 router.get("/:id/customise", async function (req, res) {
   const id = Number(req.params.id)
   const customise = await getCustomiseByUsers(id);
