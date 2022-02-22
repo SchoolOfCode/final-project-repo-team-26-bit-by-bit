@@ -1,12 +1,12 @@
 import query from "../../connection.js";
 
-const sqlString = `CREATE TABLE users(
+const sqlString = `CREATE TABLE IF NOT EXISTS users(
   user_id SERIAL PRIMARY KEY,
   full_name varchar(255),
   created timestamp not null default CURRENT_TIMESTAMP
 );
 
-CREATE TABLE todo_list(
+CREATE TABLE IF NOT EXISTS todo_list(
   user_id int,
   todo_id int,
   text varchar(255),
@@ -19,7 +19,7 @@ CREATE TABLE todo_list(
   amount int
 );
 
-CREATE TABLE goals (
+CREATE TABLE IF NOT EXISTS goals (
   user_id int,
   goals_id int,
   text varchar(255),
@@ -31,7 +31,7 @@ CREATE TABLE goals (
   amount int
 );
 
-CREATE TABLE customise(
+CREATE TABLE IF NOT EXISTS customise(
   user_id int,
   customise_id int,
   medication boolean,
