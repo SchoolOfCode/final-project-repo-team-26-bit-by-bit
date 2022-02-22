@@ -1,11 +1,8 @@
 import express from "express";
-
 import { getAllUsers,createUser, getUserById} from "../models/users.js";
 import { getAllToDo, getToDoByID, createToDoList, updateToDo, DeleteToDo } from "../models/todo/index.js";
 import { getAllReminder,getReminderByID, createReminderList,updateReminder, DeleteReminder } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals, getGoalsById } from "../models/goals/index.js";
-
-
 import { getCustomiseByUsers, getCustomiseByID, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 
 const router = express.Router();
@@ -116,6 +113,7 @@ router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
     success: true,
     payload: reminder_list,
   });
+});
 
   router.post("/:user_id/reminders", async function (req, res) {
     const body = req.body;
@@ -253,4 +251,3 @@ router.delete("/:user_id/goals/:goals_id", async function (req, res) {
 });
 
 export default router;
-
