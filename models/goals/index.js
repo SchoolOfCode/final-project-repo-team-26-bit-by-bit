@@ -5,7 +5,9 @@ export async function getAllGoals(id) {
     return result.rows;
   }
 
+
   export async function getGoalsById(goals_id, user_id) {
+
     const result = await query(`SELECT * FROM goals WHERE goals_id  = $1 and user_id = $2;`, [goals_id, user_id]);
     return result.rows;
   }
