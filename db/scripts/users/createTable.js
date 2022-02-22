@@ -47,6 +47,12 @@ CREATE TABLE IF NOT EXISTS custom_section_item(
   due_date DATE
 );
 
+CREATE TABLE IF NOT EXISTS settings(
+  id,
+  user_id,
+  is_dark
+);
+
 ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE reminder_list ADD FOREIGN KEY (user_id) REFERENCES users (id);
@@ -55,7 +61,9 @@ ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE customise ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE custom_section_item ADD FOREIGN KEY (section_id) REFERENCES section (id);`
+ALTER TABLE custom_section_item ADD FOREIGN KEY (section_id) REFERENCES section (id);
+
+ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES user (id);`
 
 async function createTable (){
 
@@ -93,3 +101,5 @@ createTable();
 // Menu option = customisation.
 // custom_section and custom_section_item tables 
 // which correlate to our chosen customisation optons
+
+// 6. Settings tables allocated
