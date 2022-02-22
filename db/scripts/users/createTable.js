@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS todo_list(
   text varchar(255),
   priority varchar(255),
   isCompleted boolean,
-  created date not null default CURRENT_DATE,
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS reminder_list(
@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS reminder_list(
   user_id int, 
   text varchar(255),
   due_date TIMESTAMP,
-  isCompleted boolean
+  isCompleted boolean,
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS goals (
@@ -37,20 +38,23 @@ CREATE TABLE IF NOT EXISTS goals (
 CREATE TABLE IF NOT EXISTS custom_section(
   id int,
   user_id int,
-  name varchar(255)
+  name varchar(255),
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS custom_section_item(
   id int,
   section_id int,
   text varchar(255),
-  due_date DATE
+  due_date DATE,
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS settings(
   id,
   user_id,
-  is_dark
+  is_dark,
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (id);
