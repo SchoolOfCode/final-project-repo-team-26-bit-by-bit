@@ -12,3 +12,24 @@ describe("GET /users", function () {
     expect(actual.statusCode).toBe(200);
   });
 });
+
+
+
+describe("GET /", function () {
+  test("gives us back 200, with a message", async function () {
+
+    //arrange;
+    const expectedBody = `Express + ES6 Imports
+Welcome to the future 🔮`
+       
+    
+    //act;
+    const actual = await request(app).get("/");
+    //assert;
+    expect(actual.body).toStrictEqual(expectedBody);
+    expect(actual.statusCode).toBe(200);
+
+
+
+  });
+});

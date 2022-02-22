@@ -11,7 +11,9 @@
     "db:dropcustomise":"node -r dotenv/config ./db/scripts/users/deleTables/deleteCustomiseTable.js",
     "db:dropusers":"node -r dotenv/config ./db/scripts/users/deleTables/deleteUsersTable.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test1": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./routes/users.test.js"
+
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
