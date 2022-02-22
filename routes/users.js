@@ -1,7 +1,7 @@
 import express from "express";
 
 import { getAllUsers,createUser, getUserById} from "../models/users.js";
-import { getAllToDo, getTodoByID, createToDoList, updateToDo, DeleteToDo } from "../models/todo/index.js";
+import { getAllToDo, getToDoByID, createToDoList, updateToDo, DeleteToDo } from "../models/todo/index.js";
 import { getAllReminder,getReminderByID, createReminderList,updateReminder, DeleteReminder } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals, getGoalsById } from "../models/goals/index.js";
 
@@ -54,7 +54,49 @@ router.get("/:user_id/todo", async function (req, res) {
     payload: todo_list,
   });
 });
+router.get("/:user_id/todo/:todo_id", async function (req, res) {
+  const user_id = Number(req.params.user_id)
+  const todo_id = Number(req.params.todo_id);
+  const todo_list = await getToDoByID(user_id, todo_id);
 
+  res.json({
+    success: true,
+    payload: todo_list,
+  });
+});
+
+
+/* POST todos by user ID. */
+router.post("/:user_id/todos", async function (req, res) {
+  const body = req.body;
+  const created = await createToDoList(body);
+  res.json({
+    success: true,
+    payload: created,
+  });
+});
+
+/* Update todos by user ID and todo_id. */
+router.put("/:user_id/todos/:todo_id", async function (req, res) {
+  const body = req.body;
+ const updated = await updateToDo(body);
+
+ res.json({
+   success: true,
+   payload: updated,
+ });
+});
+
+router.delete("/:user_id/todos/:todo_id", async function (req, res){
+  const todo_id = Number(req.params.todo_id)
+  const user_id = Number(req.body.user_id)
+  const remove = await DeleteToDo(todo_id, user_id);
+
+  res.json({
+    success: true,
+    payload: remove,
+  })
+})
 /* GET reminders by user ID. */
 router.get("/:user_id/reminder", async function (req, res) {
   const user_id = Number(req.params.user_id)
@@ -66,164 +108,56 @@ router.get("/:user_id/reminder", async function (req, res) {
   });
 });
 
-
-/* GET todos by user ID and todo_id. */
-router.get("/:user_id/todos/:todo_id", async function (req, res) {
-  const todo_id = Number(req.params.todo_id);
-  const user_id = Number(req.params.user_id)
-  const todo_list = await getToDoByID(todo_id, user_id);
-
-  res.json({
-    success: true,
-    payload: todo_list,
-  });
-});
-
-/* GET reminders by user ID and reminder_id. */
 router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
   const reminder_id = Number(req.params.reminder_id);
   const user_id = Number(req.params.user_id)
-  const todo_list = await getReminderByID(reminder_id, user_id);
-
-/* GET reminders by user ID. */
-router.get("/:id/reminders", async function (req, res) {
-  const id = Number(req.params.id)
-  const todo_list = await getAllToDo(id);
-
+  const reminder_list = await getReminderByID(reminder_id, user_id);
   res.json({
     success: true,
-    payload: todo_list,
+    payload: reminder_list,
   });
-});
 
-
-
-/* POST todos by user ID. */
-  router.post("/:user_id/todos", async function (req, res) {
-  const body = req.body;
-  const created = await createToDoList(body);
-  res.json({
-    success: true,
-    payload: created,
+  router.post("/:user_id/reminders", async function (req, res) {
+    const body = req.body;
+    const created = await createReminderList(body);
+  
+    res.json({
+      success: true,
+      payload: created,
+    });
   });
-});
 
-/* GET reminders by user ID and todo_id. */
-router.get("/:id/reminders/:id", async function (req, res) {
-  const todo_id = Number(req.params.id);
-  const user_id = Number(req.params.id)
-  const todo_list = await getTodoByID(todo_id, user_id);
-
-  res.json({
-    success: true,
-    payload: todo_list,
+  router.put("/:user_id/reminders/:reminder_id", async function (req, res) {
+    //req.params.reminder_id;
+    const body = req.body;
+    const updated = await updateReminder(body);
+  
+    res.json({
+      success: true,
+      payload: updated,
+    });
   });
-});
 
-
-/* POST reminders by user ID. */
-router.post("/:user_id/todos", async function (req, res) {
-  const body = req.body;
-  const created = await createToDoList(body);
-  res.json({
-    success: true,
-    payload: created,
-  });
-});
-
-
-router.post("/:user_id/reminders", async function (req, res) {
-  const body = req.body;
-  const created = await createReminderList(body);
-
-  res.json({
-    success: true,
-    payload: created,
-  });
-});
-
-/* Update todos by user ID and todo_id. */
-router.put("/:user_id/todos/:todo_id", async function (req, res) {
-   const body = req.body;
-  const updated = await updateToDo(body);
-
-  res.json({
-    success: true,
-    payload: updated,
-  });
-});
-  //req.params.todo_id;
-
-/* Update reminders by user ID and todo_id. */
-router.put("/:id/todos/:id", async function (req, res) {
-
-  const body = req.body;
-  const updated = await updateToDo(body);
-
-  res.json({
-    success: true,
-    payload: updated,
-  });
-});
-
-router.put("/:user_id/reminders/:reminder_id", async function (req, res) {
-  //req.params.reminder_id;
-  const body = req.body;
-  const updated = await updateReminder(body);
-
-  res.json({
-    success: true,
-    payload: updated,
-  });
-});
-
-/* DELETE todos by user ID and todo_id. */
-router.delete("/:user_id/todos/:todo_id", async function (req, res){
-  const todo_id = Number(req.params.todo_id)
-  const user_id = Number(req.body.user_id)
-  const remove = await DeleteToDo(todo_id, user_id);
-
-  res.json({
-    success: true,
-    payload: remove,
+  router.delete("/:user_id/reminders/:reminder_id", async function (req, res){
+    const reminder_id = Number(req.params.reminder_id)
+    const user_id = Number(req.body.user_id)
+    const remove = await DeleteReminder(reminder_id, user_id);
+    res.json({
+      success: true,
+      payload: remove,
+    })
   })
-})
 
-/* DELETE reminders by user ID and reminder_id. */
-router.delete("/:user_id/reminders/:reminder_id", async function (req, res){
-  const reminder_id = Number(req.params.reminder_id)
-  const user_id = Number(req.body.user_id)
-  const remove = await DeleteReminder(reminder_id, user_id);
-  res.json({
-    success: true,
-    payload: remove,
-  })
-})
-
-/* DELETE reminders by user ID and todo_id. */
-router.delete("/:id/todos/:todo_id", async function (req, res){
-  const todo_id = Number(req.params.todo_id)
-  const user_id = Number(req.body.id)
-  const remove = await DeleteToDo(todo_id, user_id);
-
-  res.json({
-    success: true,
-    payload: remove,
-  })
-})
-
-/* GET reminders by user ID. */
-router.get("/:user_id/customise", async function (req, res) {
-  const user_id = Number(req.params.user_id)
-  const customise = await getCustomiseByUsers(user_id);
-  res.json({
-    success: true,
-    payload: customise,
+  router.get("/:user_id/customise", async function (req, res) {
+    const user_id = Number(req.params.user_id)
+    const customise = await getCustomiseByUsers(user_id);
+    res.json({
+      success: true,
+      payload: customise,
+    });
   });
-});
 
-
-/* GET customise by user_id and customise_id */
+  /* GET customise by user_id and customise_id */
 router.get("/:user_id/customise/:customise_id", async function (req, res) {
   const user_id = Number(req.params.user_id);
   const customise_id = Number(req.params.customise_id);
@@ -255,7 +189,6 @@ router.put("/:user_id/customise/:customise_id", async function (req, res ){
   })
 })
 
-
 router.delete("/:user_id/customise/:customise_id", async function (req, res){
   const customise_id = Number(req.params.customise_id);
   const user_id = Number(req.params.user_id)
@@ -266,6 +199,7 @@ router.delete("/:user_id/customise/:customise_id", async function (req, res){
     payload: remove,
   })
 })
+
 
 router.get("/:user_id/goals", async function (req, res) {
   const user_id = Number(req.params.user_id)
@@ -317,4 +251,6 @@ router.delete("/:user_id/goals/:goals_id", async function (req, res) {
     payload: removed,
   });
 });
+
 export default router;
+

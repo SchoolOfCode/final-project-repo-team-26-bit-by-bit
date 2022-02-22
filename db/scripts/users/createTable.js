@@ -15,25 +15,31 @@ CREATE TABLE IF NOT EXISTS todo_list(
   frequency int,
   due_date  DATE,
   isCompleted boolean,
-  isRecurring boolean,
   amount int
+);
+
+CREATE TABLE IF NOT EXISTS reminder_list(
+  user_id int, 
+  reminder_id int, 
+  text varchar(255),
+  due_date DATE, 
+  isCompleted boolean 
 );
 
 CREATE TABLE IF NOT EXISTS goals (
   user_id int,
-  goals_id int,
+  goals_id int ,
   text varchar(255),
   priority varchar(255),
   created date not null default CURRENT_DATE,
   due_date  DATE,
   isCompleted boolean,
-  isRecurring boolean,
   amount int
 );
 
 CREATE TABLE IF NOT EXISTS customise(
   user_id int,
-  customise_id int,
+  customise_id int ,
   medication boolean,
   appointment boolean,
   exercise boolean,
@@ -42,6 +48,8 @@ CREATE TABLE IF NOT EXISTS customise(
 );
 
 ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+ALTER TABLE reminder_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
 ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
