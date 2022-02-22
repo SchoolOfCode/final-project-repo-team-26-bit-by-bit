@@ -11,19 +11,16 @@ CREATE TABLE IF NOT EXISTS todo_list(
   user_id int,
   text varchar(255),
   priority varchar(255),
-  created date not null default CURRENT_DATE,
-  frequency int,
-  due_date  DATE,
   isCompleted boolean,
-  amount int
+  created date not null default CURRENT_DATE,
 );
 
 CREATE TABLE IF NOT EXISTS reminder_list(
   id int, 
   user_id int, 
   text varchar(255),
-  due_date DATE, 
-  isCompleted boolean 
+  due_date TIMESTAMP,
+  isCompleted boolean
 );
 
 CREATE TABLE IF NOT EXISTS goals (
