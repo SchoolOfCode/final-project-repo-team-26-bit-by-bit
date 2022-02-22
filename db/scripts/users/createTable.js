@@ -37,16 +37,6 @@ CREATE TABLE IF NOT EXISTS goals (
   amount int
 );
 
-CREATE TABLE IF NOT EXISTS customise(
-  user_id int,
-  customise_id int ,
-  medication boolean,
-  appointment boolean,
-  exercise boolean,
-  isDark boolean,
-  isSimple boolean
-);
-
 CREATE TABLE IF NOT EXISTS custom_section(
   id int,
   user_id int,
