@@ -5,13 +5,13 @@ export async function getAllGoals(id) {
     return result.rows;
   }
 
-  export async function getGoalsBYId(goals_id, user_id) {
+  export async function getGoalsById(goals_id, user_id) {
     const result = await query(`SELECT * FROM goals WHERE goals_id  = $1 and user_id = $2;`, [goals_id, user_id]);
     return result.rows;
   }
   
   export async function createGoals(body) {
-      const user_id = body.user_id;
+    const user_id = body.user_id;
     const goals_id = body.goals_id;
     const text= body.text;
     const priority= body.priority;

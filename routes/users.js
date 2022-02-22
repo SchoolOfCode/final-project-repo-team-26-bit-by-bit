@@ -1,8 +1,8 @@
 import express from "express";
-import {getAllUsers,createUser, getUserById} from "../models/users.js";
-import {getAllToDo,getTodoByID, createToDoList,updateToDo, DeleteToDo } from "../models/todo/index.js";
-import {getAllReminder,getReminderByID, createReminderList,updateReminder, DeleteReminder } from "../models/reminders/index.js";
-import { getAllGoals, createGoals, updateGoals, DeleteGoals, getGoalsBYId } from "../models/goals/index.js";
+import { getAllUsers,createUser, getUserById} from "../models/users.js";
+import { getAllToDo,getTodoByID, createToDoList,updateToDo, DeleteToDo } from "../models/todo/index.js";
+import { getAllReminder,getReminderByID, createReminderList,updateReminder, DeleteReminder } from "../models/reminders/index.js";
+import { getAllGoals, createGoals, updateGoals, DeleteGoals, getGoalsById } from "../models/goals/index.js";
 import { getCustomiseByUsers, getCustomiseByID, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 
 const router = express.Router();
@@ -77,7 +77,7 @@ router.get("/:user_id/todos/:todo_id", async function (req, res) {
 router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
   const reminder_id = Number(req.params.reminder_id);
   const user_id = Number(req.params.user_id)
-  const todo_list = await getTodoByID(reminder_id, user_id);
+  const todo_list = await getReminderByID(reminder_id, user_id);
 
   res.json({
     success: true,
@@ -100,7 +100,7 @@ router.post("/:user_id/todos", async function (req, res) {
 /* POST reminders by user ID. */
 router.post("/:user_id/reminders", async function (req, res) {
   const body = req.body;
-  const created = await createToDoList(body);
+  const created = await createReminderList(body);
 
   res.json({
     success: true,
@@ -124,7 +124,7 @@ router.put("/:user_id/todos/:todo_id", async function (req, res) {
 router.put("/:user_id/reminders/:reminder_id", async function (req, res) {
   //req.params.reminder_id;
   const body = req.body;
-  const updated = await updateToDo(body);
+  const updated = await updateReminder(body);
 
   res.json({
     success: true,
@@ -148,7 +148,7 @@ router.delete("/:user_id/reminders/:todo_id", async function (req, res){
 router.delete("/:user_id/reminders/:reminder_id", async function (req, res){
   const reminder_id = Number(req.params.reminder_id)
   const user_id = Number(req.body.user_id)
-  const remove = await DeleteToDo(reminder_id, user_id);
+  const remove = await DeleteReminder(reminder_id, user_id);
 
   res.json({
     success: true,
@@ -223,7 +223,7 @@ router.get("/:user_id/goals", async function (req, res) {
 router.get("/:user_id/goals/:goals_id", async function (req, res) {
   const goal_id = Number(req.params.goals_id);
   const user_id = Number(req.params.user_id)
-  const goal = await getGoalsBYId(goal_id, user_id);
+  const goal = await getGoalsById(goal_id, user_id);
 
   res.json({
     success: true,
