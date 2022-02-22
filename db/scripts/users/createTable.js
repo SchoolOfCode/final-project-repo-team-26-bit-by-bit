@@ -68,3 +68,28 @@ async function createTable (){
 
 createTable();
 
+// TODO:
+// 1. Reoccuring
+// removied frequency from todo_list table,
+// figure out how to store reoccuring tasks
+
+// 2. Amount
+// removed from amount from todo_list table,
+// figure out how to track completed tasks
+// (maybe can use SELECT COUNT to generate "amount" of completions)
+
+// 3. reminder_list due_date TIMESTAMP,
+// https://www.postgresqltutorial.com/postgresql-timestamp/
+// Can create an input field of type "datetime-local"
+// to collect specific date and time
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local
+// Will need to format date time from JavaScript to SQL format
+
+// 4. Goals
+// Have kept the same, but not part of the MVP
+// Can add after
+
+// 5. Custom sections (Customaisation)
+// Menu option = customisation.
+// custom_section and custom_section_item tables 
+// which correlate to our chosen customisation optons
