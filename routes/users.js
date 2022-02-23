@@ -21,7 +21,9 @@ import {
   deleteGoals,
   getGoalsById,
 } from "../models/goals/index.js";
-import { createCustom, getCustomByID, getCustomByUsers } from "../models/custom/index.js";
+import { createCustom, deleteCustom, getCustomByID, getCustomByUsers, updateCustom } from "../models/custom/index.js";
+import { createSettings, deleteSettings, getAllSettingsByUser, getSettingsBySettingId, updateSettings } from "../models/settings/index.js";
+import { createCustomSectionItem, deleteCustomSectionItem, getCustomSectionItemByID, getCustomSectionItemByUsers, updateCustomSectionItem } from "../models/custom_item/index.js";
 
 
 const router = express.Router();
@@ -68,6 +70,8 @@ router.get("/:user_id/todo", async function (req, res) {
     payload: todo_list,
   });
 });
+
+/*GET todos by user_id & todo_id */
 router.get("/:user_id/todo/:todo_id", async function (req, res) {
   const user_id = Number(req.params.user_id);
   const todo_id = Number(req.params.todo_id);
@@ -89,7 +93,7 @@ router.post("/:user_id/todos", async function (req, res) {
   });
 });
 
-/* Update todos by user ID and todo_id. */
+/* Update todos by user ID & todo_id. */
 router.put("/:user_id/todos/:todo_id", async function (req, res) {
   const body = req.body;
   const updated = await updateToDo(body);
@@ -100,6 +104,8 @@ router.put("/:user_id/todos/:todo_id", async function (req, res) {
   });
 });
 
+
+/*Delete todos by user_id & todo_id*/
 router.delete("/:user_id/todos/:todo_id", async function (req, res) {
   const todo_id = Number(req.params.todo_id);
   const user_id = Number(req.body.user_id);
@@ -110,6 +116,8 @@ router.delete("/:user_id/todos/:todo_id", async function (req, res) {
     payload: remove,
   });
 });
+
+
 /* GET reminders by user ID. */
 router.get("/:user_id/reminders", async function (req, res) {
   const user_id = Number(req.params.user_id);
@@ -121,6 +129,7 @@ router.get("/:user_id/reminders", async function (req, res) {
   });
 });
 
+/* GET reminders by user_id & reminder_id. */
 router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
   const reminder_id = Number(req.params.reminder_id);
   const user_id = Number(req.params.user_id);
@@ -131,6 +140,8 @@ router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
   });
 });
 
+
+/* POST reminders by user_id*/
 router.post("/:user_id/reminders", async function (req, res) {
   const body = req.body;
   const created = await createReminderList(body);
@@ -141,6 +152,7 @@ router.post("/:user_id/reminders", async function (req, res) {
   });
 });
 
+/* Update reminders by user_id & reminder_id */
 router.put("/:user_id/reminders/:reminder_id", async function (req, res) {
   //req.params.reminder_id;
   const body = req.body;
@@ -172,19 +184,19 @@ router.get("/:user_id/custom_section", async function (req, res) {
   });
 });
 
-/* GET custom_section by user_id and custom_id*/ 
+/* GET custom_section by user_id & custom_id*/ 
 router.get("/:user_id/custom_section/:custom_id", async function (req, res) {
   const user_id = Number(req.params.user_id);
-  const customise_id = Number(req.params.customise_id);
-  const customise = await getCustomByID(user_id, customise_id);
+  const custom_id = Number(req.params.custom_id);
+  const custom = await getCustomByID(user_id, custom_id);
 
   res.json({
     success: true,
-    payload: customise,
+    payload: custom,
   });
 });
 
-
+/* POST custom_section by user_id. */
 router.post("/:user_id/custom_section", async function (req, res) {
   const body = req.body;
   const created = await createCustom(body);
@@ -195,9 +207,11 @@ router.post("/:user_id/custom_section", async function (req, res) {
   });
 });
 
-router.put("/:user_id/customise/:customise_id", async function (req, res) {
+/* Update custom_section by user_id & custom_id. */
+
+router.put("/:user_id/customise/:custom_id", async function (req, res) {
   const body = req.body;
-  const update = await updateCustomise(body);
+  const update = await updateCustom(body);
 
   res.json({
     success: true,
@@ -205,10 +219,11 @@ router.put("/:user_id/customise/:customise_id", async function (req, res) {
   });
 });
 
-router.delete("/:user_id/customise/:customise_id", async function (req, res) {
-  const customise_id = Number(req.params.customise_id);
+/* Delete custom_section by user_id & custom_id. */
+router.delete("/:user_id/custom/:custom_id", async function (req, res) {
+  const custom_id = Number(req.params.custom_id);
   const user_id = Number(req.params.user_id);
-  const remove = await deleteCustomise(customise_id, user_id);
+  const remove = await deleteCustom(custom_id, user_id);
 
   res.json({
     success: true,
@@ -216,6 +231,8 @@ router.delete("/:user_id/customise/:customise_id", async function (req, res) {
   });
 });
 
+
+/* GET goals by user_id. */
 router.get("/:user_id/goals", async function (req, res) {
   const user_id = Number(req.params.user_id);
   const goals = await getAllGoals(user_id);
@@ -225,8 +242,8 @@ router.get("/:user_id/goals", async function (req, res) {
     payload: goals,
   });
 });
-/* GET customise by user_id and goal_id */
 
+/* GET goals by user_id & goal_id */
 router.get("/:user_id/goals/:goals_id", async function (req, res) {
   const goal_id = Number(req.params.goals_id);
   const user_id = Number(req.params.user_id);
@@ -238,6 +255,7 @@ router.get("/:user_id/goals/:goals_id", async function (req, res) {
   });
 });
 
+/* POST goals by user_id. */
 router.post("/:user_id/goals", async function (req, res) {
   const body = req.body;
   const create = await createGoals(body);
@@ -247,6 +265,7 @@ router.post("/:user_id/goals", async function (req, res) {
   });
 });
 
+/* UPDATE goals by user_id & goal_id */
 router.put("/:user_id/goals/:goals_id", async function (req, res) {
   const body = req.body;
   const update = await updateGoals(body);
@@ -256,6 +275,7 @@ router.put("/:user_id/goals/:goals_id", async function (req, res) {
   });
 });
 
+/* DELETE goals by user_id and goal_id */
 router.delete("/:user_id/goals/:goals_id", async function (req, res) {
   const goals_id = Number(req.params.goals_id);
   const user_id = Number(req.params.user_id);
@@ -266,5 +286,118 @@ router.delete("/:user_id/goals/:goals_id", async function (req, res) {
     payload: removed,
   });
 });
+
+/* GET settings by user_id */
+router.get("/:user_id/settings", async function (req, res) {
+  const user_id = Number(req.params.user_id);
+  const settings = await getAllSettingsByUser(user_id);
+
+  res.json({
+    success: true,
+    payload: settings,
+  });
+});
+
+/* GET settings by user_id & setting_id */
+router.get("/:user_id/settings/:setting_id", async function (req, res) {
+  const setting_id = Number(req.params.setting_id);
+  const user_id = Number(req.params.user_id);
+  const settings = await getSettingsBySettingId(setting_id, user_id);
+
+  res.json({
+    success: true,
+    payload: settings,
+  });
+});
+
+/* POST settings by user_id */
+router.post("/:user_id/settings", async function (req, res) {
+  const body = req.body;
+  const create = await createSettings(body);
+  res.json({
+    success: true,
+    payload: create,
+  });
+});
+
+/* UPDATE settings by user_id & setting_id */
+router.put("/:user_id/settings/:setting_id", async function (req, res) {
+  const body = req.body;
+  const update = await updateSettings(body);
+  res.json({
+    success: true,
+    payload: update,
+  });
+});
+
+/* DELETE settings by user_id & setting_id */
+router.delete("/:user_id/settings/:setting_id", async function (req, res) {
+  const setting_id = Number(req.params.setting_id);
+  const user_id = Number(req.params.user_id);
+  const removed = await deleteSettings(setting_id, user_id);
+
+  res.json({
+    success: true,
+    payload: removed,
+  });
+});
+
+/* GET custom_section_item by user_id */
+router.get("/:user_id/custom_item", async function (req, res) {
+  const user_id = Number(req.params.user_id);
+  const custom_item = await getCustomSectionItemByUsers(user_id);
+
+  res.json({
+    success: true,
+    payload: custom_item,
+  });
+});
+
+/* GET custom_section_item by user_id & setting_id */
+router.get("/:user_id/custom_item/:section_id", async function (req, res) {
+  const section_id = Number(req.params.section_id);
+  const user_id = Number(req.params.user_id);
+  const custom_item = await getCustomSectionItemByID(section_id, user_id);
+
+  res.json({
+    success: true,
+    payload: custom_item,
+  });
+});
+
+/*POST custom_section_item by user_id */
+router.post("/:user_id/custom_item", async function (req, res) {
+  const body = req.body;
+  const create = await createCustomSectionItem(body);
+  res.json({
+    success: true,
+    payload: create,
+  });
+});
+
+/* UPDATE custom_section_item by user_id & setting_id */
+router.put("/:user_id/custom_item/:section_id", async function (req, res) {
+  const body = req.body;
+  const update = await updateCustomSectionItem(body);
+  res.json({
+    success: true,
+    payload: update,
+  });
+});
+
+/* DELETE custom_section_item by user_id & setting_id */
+router.delete("/:user_id/custom_item/:section_id", async function (req, res) {
+  const section_id = Number(req.params.section_id);
+  const user_id = Number(req.params.user_id);
+  const removed = await deleteCustomSectionItem(section_id, user_id);
+
+  res.json({
+    success: true,
+    payload: removed,
+  });
+});
+
+
+
 
 export default router;

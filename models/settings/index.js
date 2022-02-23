@@ -1,6 +1,6 @@
 import query from "../../db/connection.js";
 
-export async function getSettingsByUser(user_id) {
+export async function getAllSettingsByUser(user_id) {
   const result = await query(`SELECT * FROM settings WHERE user_id = $1;`, [
     user_id,
   ]);

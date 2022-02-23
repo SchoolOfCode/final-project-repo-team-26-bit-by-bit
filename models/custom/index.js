@@ -9,7 +9,7 @@ export async function getCustomByUsers(user_id) {
 
 export async function getCustomByID(custom_id, user_id) {
   const result = await query(
-    `SELECT * FROM custom_section WHERE customise_id = $1 AND user_id = $2;`,
+    `SELECT * FROM custom_section WHERE custom_id = $1 AND user_id = $2;`,
     [custom_id, user_id]
   );
   return result.rows;
@@ -49,7 +49,7 @@ export async function updateCustom(body) {
 }
 export async function deleteCustom(custom_id, user_id) {
   const data = await query(
-    `DELETE FROM custom_section WHERE customise_id = $1 AND user_id = $2`,
+    `DELETE FROM custom_section WHERE custom_id = $1 AND user_id = $2`,
     [custom_id, user_id]
   );
 
