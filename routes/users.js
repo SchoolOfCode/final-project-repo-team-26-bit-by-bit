@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers, createUser, getUserById } from "../models/users.js";
+import { getAllUsers, createUser, getUserById, updateUser } from "../models/users.js";
 import {
   getAllToDo,
   getToDoByID,
@@ -59,6 +59,17 @@ router.post("/", async function (req, res) {
     payload: create,
   });
 });
+
+router.put("/:user_id", async function (req, res) {
+  const body = req.body;
+  const update = await updateUser(body);
+  res.json({
+    success: true,
+    payload: update,
+  });
+});
+
+
 
 /* GET todos by user ID. */
 router.get("/:user_id/todo", async function (req, res) {
@@ -209,7 +220,7 @@ router.post("/:user_id/custom_section", async function (req, res) {
 
 /* Update custom_section by user_id & custom_id. */
 
-router.put("/:user_id/customise/:custom_id", async function (req, res) {
+router.put("/:user_id/custom_section/:custom_id", async function (req, res) {
   const body = req.body;
   const update = await updateCustom(body);
 
@@ -220,7 +231,7 @@ router.put("/:user_id/customise/:custom_id", async function (req, res) {
 });
 
 /* Delete custom_section by user_id & custom_id. */
-router.delete("/:user_id/custom/:custom_id", async function (req, res) {
+router.delete("/:user_id/custom_section/:custom_id", async function (req, res) {
   const custom_id = Number(req.params.custom_id);
   const user_id = Number(req.params.user_id);
   const remove = await deleteCustom(custom_id, user_id);

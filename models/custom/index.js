@@ -41,8 +41,8 @@ export async function updateCustom(body) {
     `UPDATE custom_section SET user_id = $1,
     custom_name= $2 WHERE custom_id = $3 RETURNING custom_name;`,
     [user_id,
-      custom_id,
-      custom_name]
+      custom_name,
+      custom_id]
   );
 
   return data.rows;
