@@ -146,58 +146,6 @@ router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
     })
   })
 
-  router.get("/:user_id/customise", async function (req, res) {
-    const user_id = Number(req.params.user_id)
-    const customise = await getCustomiseByUsers(user_id);
-    res.json({
-      success: true,
-      payload: customise,
-    });
-  });
-
-  /* GET customise by user_id and customise_id */
-router.get("/:user_id/customise/:customise_id", async function (req, res) {
-  const user_id = Number(req.params.user_id);
-  const customise_id = Number(req.params.customise_id);
-  const customise = await getCustomiseByID(user_id, customise_id);
-
-  res.json({
-    success: true,
-    payload: customise,
-  });
-});
-
-router.post("/:user_id/customise", async function (req, res) {
-  const body = req.body;
-  const created = await createCustomise(body);
-
-  res.json({
-    success: true,
-    payload: created,
-  });
-});
-
-router.put("/:user_id/customise/:customise_id", async function (req, res ){
-  const body = req.body;
-  const update = await updateCustomise(body);
-
-  res.json({
-    success: true,
-    payload: update,
-  })
-})
-
-router.delete("/:user_id/customise/:customise_id", async function (req, res){
-  const customise_id = Number(req.params.customise_id);
-  const user_id = Number(req.params.user_id)
-  const remove = await DeleteCustomise(customise_id, user_id);
-
-  res.json({
-    success: true,
-    payload: remove,
-  })
-})
-
 
 router.get("/:user_id/goals", async function (req, res) {
   const user_id = Number(req.params.user_id)
