@@ -84,7 +84,7 @@ router.get("/:user_id/todo/:todo_id", async function (req, res) {
 });
 
 /* POST todos by user ID. */
-router.post("/:user_id/todos", async function (req, res) {
+router.post("/:user_id/todo", async function (req, res) {
   const body = req.body;
   const created = await createToDoList(body);
   res.json({
@@ -94,7 +94,7 @@ router.post("/:user_id/todos", async function (req, res) {
 });
 
 /* Update todos by user ID & todo_id. */
-router.put("/:user_id/todos/:todo_id", async function (req, res) {
+router.put("/:user_id/todo/:todo_id", async function (req, res) {
   const body = req.body;
   const updated = await updateToDo(body);
 
@@ -106,7 +106,7 @@ router.put("/:user_id/todos/:todo_id", async function (req, res) {
 
 
 /*Delete todos by user_id & todo_id*/
-router.delete("/:user_id/todos/:todo_id", async function (req, res) {
+router.delete("/:user_id/todo/:todo_id", async function (req, res) {
   const todo_id = Number(req.params.todo_id);
   const user_id = Number(req.body.user_id);
   const remove = await deleteToDo(todo_id, user_id);
