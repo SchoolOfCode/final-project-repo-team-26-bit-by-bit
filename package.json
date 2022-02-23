@@ -8,8 +8,11 @@
     "db:createusers": "node -r dotenv/config ./db/scripts/users/createTable.js",
     "db:droptodo":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteTodoTable.js",
     "db:dropgoals":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteGoalsTable.js",
-    "db:dropcustomise":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomiseTable.js",
+    "db:dropcustom":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomTable.js",
     "db:dropusers":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteUsersTable.js",
+    "db:dropSettings":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteSettingsTable.js",
+    "db:dropCustomItem":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomItemTable.js",
+    "db:dropReminder":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteReminderTable.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test1": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./routes/users.test.js"
