@@ -1,3 +1,6 @@
+import query from "../../db/connection.js";
+
+
 export async function getAllToDo(user_id) {
   const result = await query(`SELECT * FROM todo_list WHERE user_id=$1;`, [user_id]);
 
