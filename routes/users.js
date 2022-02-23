@@ -21,7 +21,7 @@ import {
   deleteGoals,
   getGoalsById,
 } from "../models/goals/index.js";
-import { createCustom, deleteCustom, getCustomByID, getCustomByUsers, updateCustom } from "../models/custom/index.js";
+import { createCustom, deleteCustom, getCustomByID, getCustomByUsers, updateCustom } from "../models/custom_section/index.js";
 import { createSettings, deleteSettings, getAllSettingsByUser, getSettingsBySettingId, updateSettings } from "../models/settings/index.js";
 import { createCustomSectionItem, deleteCustomSectionItem, getCustomSectionItemByID, getCustomSectionItemByUsers, updateCustomSectionItem } from "../models/custom_item/index.js";
 
