@@ -132,7 +132,7 @@ router.delete("/:user_id/todo/:todo_id", async function (req, res) {
 });
 
 /*Delete todos by user_id*/
-router.delete("/:user_id/todo/:todo_id", async function (req, res) {
+router.delete("/:user_id/todo", async function (req, res) {
   const user_id = Number(req.body.user_id);
   const remove = await deleteToDoByUser(user_id);
 
