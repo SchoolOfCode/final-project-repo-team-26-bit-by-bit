@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "./app.js"
+import app from "../app.js"
 
 describe("Test the root path", () => {
   test("It should response the GET method", async function () {
@@ -20,4 +20,4 @@ describe("Test the root path", () => {
   });
 });
 
-// why doesn't users work?
+
