@@ -17,6 +17,7 @@
     "test": "node  -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
     "testApp": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./app.test.js",
     "testRoutes": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./routes/users.test.js",
+    "testMockRoutes": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./routes/mock.test.js",
     "testRem": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/reminders/index.test.js",
     "tesTodo": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/todo/index.test.js",
     "testModels": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/users.test.js"
