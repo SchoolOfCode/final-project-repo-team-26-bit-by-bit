@@ -34,7 +34,7 @@ app.use('/users', usersRouter);
 //   if (!req.user_id) return next(createError(401, 'Please login to view this page.'))
 //   next()
 // })
-
+ 
 app.use(async function (req, res) {
   res.status(404).json({message: "We couldn't find what you were looking for 😞"})
 })
