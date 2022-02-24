@@ -1,11 +1,24 @@
-import express from "express";
+
 import { getAllUsers,createUser, getUserById} from "../models/users.js";
 import { getAllToDo, getToDoByID, createToDoList, updateToDo, DeleteToDo } from "../models/todo/index.js";
 import { getAllReminder,getReminderByID, createReminderList,updateReminder, DeleteReminder } from "../models/reminders/index.js";
 import { getAllGoals, createGoals, updateGoals, DeleteGoals, getGoalsById } from "../models/goals/index.js";
 import { getCustomiseByUsers, getCustomiseByID, createCustomise, updateCustomise, DeleteCustomise } from "../models/customise/index.js";
 
-const router = express.Router();
+// import express from "express";
+// const router = express.Router();
+
+import Router from "express-promise-router";
+
+
+const router = Router();
+
+router.use("/url", function (req, res) {
+  return Promise.reject();
+});
+
+//create a table/post for new users
+
 
 /* GET users listing. */
 router.get("/", async function (req, res) {
