@@ -108,7 +108,6 @@ router.post("/:user_id/todo", async function (req, res) {
 router.put("/:user_id/todo/:todo_id", async function (req, res) {
   const body = req.body;
   const updated = await updateToDo(body);
-
   res.json({
     success: true,
     payload: updated,

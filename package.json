@@ -14,8 +14,12 @@
     "db:dropCustomItem":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomItemTable.js",
     "db:dropReminder":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteReminderTable.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test1": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./routes/users.test.js"
+    "test": "node  -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "testApp": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./app.test.js",
+    "testRoutes": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./routes/users.test.js",
+    "testRem": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/reminders/index.test.js",
+    "tesTodo": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/todo/index.test.js",
+    "testModels": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/users.test.js"
 
   },
   "dependencies": {
