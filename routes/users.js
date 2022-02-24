@@ -1,5 +1,10 @@
 import express from "express";
-import { getAllUsers, createUser, getUserById, updateUser } from "../models/users.js";
+import {
+  getAllUsers,
+  createUser,
+  getUserById,
+  updateUser,
+} from "../models/users.js";
 import {
   getAllToDo,
   getToDoByID,
@@ -24,6 +29,7 @@ import {
   getGoalsById,
   deleteGoalsByUser,
 } from "../models/goals/index.js";
+
 import { createCustom, deleteCustom, deleteCustomByUser, getCustomByID, getCustomByUsers, updateCustom } from "../models/custom_section/index.js";
 import { createSettings, deleteSettings, deleteSettingsByUser, getAllSettingsByUser, getSettingsBySettingId, updateSettings } from "../models/settings/index.js";
 import { createCustomSectionItem, deleteCustomSectionItem, deleteCustomSectionItemByUser, getCustomSectionItemByID, getCustomSectionItemByUsers, updateCustomSectionItem } from "../models/custom_item/index.js";
@@ -48,7 +54,7 @@ router.get("/:user_id", async function (req, res) {
   const body = await getUserById(user_id);
 
   res.json({
-    sucess: true,
+    success: true,
     payload: body,
   });
 });
@@ -71,8 +77,6 @@ router.put("/:user_id", async function (req, res) {
     payload: update,
   });
 });
-
-
 
 /* GET todos by user ID. */
 router.get("/:user_id/todo", async function (req, res) {
@@ -111,13 +115,11 @@ router.post("/:user_id/todo", async function (req, res) {
 router.put("/:user_id/todo/:todo_id", async function (req, res) {
   const body = req.body;
   const updated = await updateToDo(body);
-
   res.json({
     success: true,
     payload: updated,
   });
 });
-
 
 /*Delete todos by user_id & todo_id*/
 router.delete("/:user_id/todo/:todo_id", async function (req, res) {
@@ -130,6 +132,7 @@ router.delete("/:user_id/todo/:todo_id", async function (req, res) {
     payload: remove,
   });
 });
+
 
 /*Delete todos by user_id*/
 router.delete("/:user_id/todo", async function (req, res) {
@@ -165,7 +168,6 @@ router.get("/:user_id/reminders/:reminder_id", async function (req, res) {
   });
 });
 
-
 /* POST reminders by user_id*/
 router.post("/:user_id/reminders", async function (req, res) {
   const body = req.body;
@@ -199,6 +201,7 @@ router.delete("/:user_id/reminders/:reminder_id", async function (req, res) {
   });
 });
 
+
 /* Delete reminders by user_id*/
 router.delete("/:user_id/reminders", async function (req, res) {
   const user_id = Number(req.body.user_id);
@@ -219,7 +222,7 @@ router.get("/:user_id/custom_section", async function (req, res) {
   });
 });
 
-/* GET custom_section by user_id & custom_id*/ 
+/* GET custom_section by user_id & custom_id*/
 router.get("/:user_id/custom_section/:custom_id", async function (req, res) {
   const custom_id = Number(req.params.custom_id);
   const user_id = Number(req.params.user_id);
@@ -266,6 +269,7 @@ router.delete("/:user_id/custom_section/:custom_id", async function (req, res) {
   });
 });
 
+
 /* Delete whole custom_section by user_id */
 router.delete("/:user_id/custom_section", async function (req, res) {
   const user_id = Number(req.params.user_id);
@@ -276,6 +280,7 @@ router.delete("/:user_id/custom_section", async function (req, res) {
     payload: remove,
   });
 });
+
 
 
 /* GET goals by user_id. */
@@ -475,8 +480,5 @@ router.delete("/:user_id/custom_item", async function (req, res) {
     payload: removed,
   });
 });
-
-
-
 
 export default router;
