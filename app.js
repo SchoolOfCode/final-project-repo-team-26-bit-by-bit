@@ -7,7 +7,7 @@ import logger  from 'morgan';
 import createError from 'http-errors'
 import usersRouter  from './routes/users.js';
 
-//export default function(database) {
+export default function(database) {
 
 const app = express();
 app.use(logger('dev'));
@@ -44,6 +44,6 @@ app.use(function (err, req, res, next) {
   res.status(500).json(err)
 })
 
-//return app}
+return app}
 
 export default app;
