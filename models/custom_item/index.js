@@ -51,3 +51,12 @@ export async function deleteCustomSectionItem(section_id, user_id) {
 
   return data.rows;
 }
+
+export async function deleteCustomSectionItemByUser(user_id) {
+  const data = await query(
+    `DELETE FROM custom_section_item WHERE user_id = $1`,
+    [user_id]
+  );
+
+  return data.rows;
+}

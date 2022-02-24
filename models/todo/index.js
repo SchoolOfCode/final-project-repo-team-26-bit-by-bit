@@ -50,3 +50,11 @@ export async function deleteToDo(todo_id, user_id) {
   );
   return data.rows;
 }
+
+export async function deleteToDoByUser(user_id) {
+  const data = await query(
+    `DELETE FROM todo_list WHERE user_id=$1`,
+    [user_id]
+  );
+  return data.rows;
+}

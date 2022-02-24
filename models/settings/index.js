@@ -55,3 +55,12 @@ export async function deleteSettings(setting_id, user_id) {
 
   return data.rows;
 }
+
+export async function deleteSettingsByUser(user_id) {
+    const data = await query(
+      `DELETE FROM settings WHERE user_id = $1`,
+      [user_id]
+    );
+  
+    return data.rows;
+  }
