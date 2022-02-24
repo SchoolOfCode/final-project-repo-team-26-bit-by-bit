@@ -11,11 +11,8 @@ CREATE TABLE IF NOT EXISTS todo_list(
   todo_id int,
   text varchar(255),
   priority varchar(255),
-  created date not null default CURRENT_DATE,
-  frequency int,
-  due_date  DATE,
   isCompleted boolean,
-  amount int
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS reminder_list(
@@ -23,7 +20,9 @@ CREATE TABLE IF NOT EXISTS reminder_list(
   reminder_id int, 
   text varchar(255),
   due_date DATE, 
-  isCompleted boolean 
+  isCompleted boolean,
+  created timestamp not null default CURRENT_TIMESTAMP 
+
 );
 
 CREATE TABLE IF NOT EXISTS goals (
@@ -31,20 +30,32 @@ CREATE TABLE IF NOT EXISTS goals (
   goals_id int ,
   text varchar(255),
   priority varchar(255),
-  created date not null default CURRENT_DATE,
   due_date  DATE,
   isCompleted boolean,
-  amount int
+  amount int,
+  created date not null default CURRENT_DATE
 );
 
-CREATE TABLE IF NOT EXISTS customise(
+CREATE TABLE IF NOT EXISTS custom_section(
+user_id int,
+ custom_id int,
+ custom_name varchar(255),
+ created timestamp not null default CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS custom_section_item(
   user_id int,
-  customise_id int ,
-  medication boolean,
-  appointment boolean,
-  exercise boolean,
-  isDark boolean,
-  isSimple boolean
+  section_id int,
+  text varchar(255),
+  due_date DATE,
+  created timestamp not null default CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS settings(
+  user_id int,
+  settings_id int,
+  is_dark boolean,
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
@@ -53,7 +64,11 @@ ALTER TABLE reminder_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
 ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
-ALTER TABLE customise ADD FOREIGN KEY (user_id) REFERENCES users (user_id);`
+ALTER TABLE custom_section ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+ALTER TABLE custom_section_item ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (user_id);`
 
 
 async function createTable (){

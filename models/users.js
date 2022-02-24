@@ -22,6 +22,17 @@ export async function createUser(body) {
   return data.rows;
 }
 
+export async function updateUser(body) { 
+  const full_name= body.full_name;
+    const data = await query(
+    `UPDATE users SET full_name = $1 WHERE user_id = $2 RETURNING full_name;`,
+    [ full_name]
+  );
+ 
+
+  return data.rows;
+}
+
 
 
 

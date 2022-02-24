@@ -1,8 +1,6 @@
 import {pool} from "../../../connection.js"
-//this function only works when all other tables are drops because relational database
 async function dropTable() {
-  const dropped = await pool.query("DROP TABLE IF EXISTS users;");
-  
+  const dropped = await pool.query("DROP TABLE IF EXISTS settings;");
   console.log("users table deleted", dropped.command);
 }
 try {

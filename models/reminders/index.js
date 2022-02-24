@@ -1,10 +1,12 @@
 import query from "../../db/connection.js";
-export async function getAllReminder(id) {
+export async function getAllReminder(user_id) {
   const result = await query(`SELECT * FROM reminder_list WHERE user_id= $1;`, [
-    id,
+    user_id
   ]);
   return result.rows;
 }
+
+
 
 export async function getReminderByID(reminder_id, user_id) {
   const result = await query(
@@ -14,12 +16,6 @@ export async function getReminderByID(reminder_id, user_id) {
   return result.rows;
 }
 
-//   export async function createToDoList(body) {
-//     const user_id = body.user_id;
-//     const todo_id = body.todo_id;
-//     const text= body.text;
-//     const priority= body.priority;
-//     const frequency = body.frequency;
 
 export async function createReminderList(body) {
   const user_id = body.user_id;
@@ -29,7 +25,7 @@ export async function createReminderList(body) {
   const iscompleted = body.iscompleted;
   const data = await query(
     `INSERT INTO reminder_list (user_id, reminder_id, text,
-        due_date, isCompleted, amount) VALUES ( $1, $2, $3, $4, $5) RETURNING text;`,
+        due_date, isCompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING text;`,
     [user_id, reminder_id, text, due_date, iscompleted]
   );
 
@@ -51,7 +47,7 @@ export async function updateReminder(body) {
 
 
 
-export async function DeleteReminder(reminder_id, user_id) {
+export async function deleteReminder(reminder_id, user_id) {
   const data = await query(
     `DELETE FROM reminder_list WHERE reminder_id = $1 AND user_id=$2`,
     [reminder_id, user_id]
