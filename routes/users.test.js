@@ -3,7 +3,7 @@ import app from '../app.js'; //reference to you app.js file
 import router from './users.js'
 import {jest} from '@jest/globals';
 
-
+jest.mock('./app')
 
 describe('GET /users', function () {
   it('respond with json containing a list of all users', function (done) {
@@ -36,6 +36,7 @@ const res = await requestWithSupertest.get('/users');
 expect(res.body.success).toEqual(expected)
   })
 });
+
 
 
 // describe('', function() {
@@ -107,82 +108,3 @@ expect(res.body.success).toEqual(expected)
   })
 });
 
-
-
-// router.get("/:id/customise", async function (req, res) {
-//   const id = Number(req.params.id)
-//   const customise = await getAllCustomise(id);
-
-//   res.json({
-//     success: true,
-//     payload: customise,
-//   });
-// });
-
-// router.post("/:id/customise", async function (req, res) {
-//   const body = req.body;
-//   const created = await createCustomise(body);
-
-//   res.json({
-//     success: true,
-//     payload: created,
-//   });
-// });
-
-// router.put("/:id/customise/:id", async function (req, res ){
-//   const body = req.body;
-//   const update = await updateCustomise(body);
-
-//   res.json({
-//     success: true,
-//     payload: update,
-//   })
-// })
-
-// router.delete("/:id/customise/", async function (req, res){
-//   const id = Number(req.params.id);
-//   const remove = await DeleteCustomise(id);
-
-//   res.json({
-//     success: true,
-//     payload: remove,
-//   })
-// })
-
-// router.get("/:id/goals", async function (req, res) {
-//   const id = Number(req.params.id)
-//   const goals = await getAllGoals(id);
-
-//   res.json({
-//     success: true,
-//     payload: goals,
-//   });
-// });
-
-// router.post("/:id/goals", async function (req, res) {
-//   const body = req.body;
-//   const create = await createGoals(body);
-//   res.json({
-//     success: true,
-//     payload: create,
-//   });
-// });
-
-// router.put("/:id/goals/:id", async function (req, res) {
-//   const body = req.body;
-//   const update = await updateGoals(body);
-//   res.json({
-//     success: true,
-//     payload: update,
-//   });
-// });
-
-// router.delete("/:id/goals/", async function (req, res) {
-//   const id = Number(req.params.id);
-//   const removed = await DeleteGoals(id);
-
-//   res.json({
-//     success: true,
-//     payload: removed,
-//   });
-// });
