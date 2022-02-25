@@ -66,7 +66,6 @@ router.post("/", async function (req, res) {
   // only create a user if a full_name is passed in
   if (full_name !== undefined && full_name != "") {
     const create = await createUser(body);
-    const create = []
     res.json({
       success: true,
       payload: create,
