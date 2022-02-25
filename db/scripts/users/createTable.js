@@ -1,7 +1,7 @@
 import query from "../../connection.js";
 
 const sqlString = `CREATE TABLE IF NOT EXISTS users(
-  user_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   full_name varchar(255),
   created timestamp not null default CURRENT_TIMESTAMP
 );
@@ -37,14 +37,14 @@ CREATE TABLE IF NOT EXISTS goals (
 );
 
 CREATE TABLE IF NOT EXISTS custom_section(
-user_id int,
- custom_id int,
- custom_name varchar(255),
- created timestamp not null default CURRENT_TIMESTAMP
+  id int,
+  user_id int,
+  custom_name varchar(255),
+  created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS custom_section_item(
-  user_id int,
+  id int,
   section_id int,
   text varchar(255),
   due_date DATE,
