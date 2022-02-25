@@ -7,8 +7,8 @@ const sqlString = `CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS todo_list(
+  id int,
   user_id int,
-  todo_id int,
   text varchar(255),
   priority varchar(255),
   isCompleted boolean,
@@ -16,18 +16,17 @@ CREATE TABLE IF NOT EXISTS todo_list(
 );
 
 CREATE TABLE IF NOT EXISTS reminder_list(
+  id int, 
   user_id int, 
-  reminder_id int, 
   text varchar(255),
   due_date DATE, 
   isCompleted boolean,
   created timestamp not null default CURRENT_TIMESTAMP 
-
 );
 
 CREATE TABLE IF NOT EXISTS goals (
+  id int,
   user_id int,
-  goals_id int ,
   text varchar(255),
   priority varchar(255),
   due_date  DATE,
@@ -53,7 +52,7 @@ CREATE TABLE IF NOT EXISTS custom_section_item(
 
 CREATE TABLE IF NOT EXISTS settings(
   user_id int,
-  settings_id int,
+  id int,
   is_dark boolean,
   created timestamp not null default CURRENT_TIMESTAMP
 );
