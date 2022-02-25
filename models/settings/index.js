@@ -15,7 +15,7 @@ export async function getSettingsBySettingId(setting_id, user_id) {
   return result.rows;
 }
 
-
+// setting_id does not exist? Have these been updated?
 export async function createSettings(body) {
   const user_id = body.user_id;
   const setting_id = body.setting_id;

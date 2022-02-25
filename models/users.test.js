@@ -1,67 +1,57 @@
-import pool from "../db/connection.js";
-import app from '../app.js'
-import router from "../routes/users.js";
-import request from 'supertest';
-import { jest } from '@jest/globals'
+import supertest from "supertest";
+import app from "../app.js";
+import { pool } from "../db/connection.js";
+import { test, expect, afterAll, beforeEach } from "@jest/globals";
 
-// const createUser = jest.fn()
-// const app = makeApp({createUser})
+const user_id = 1;
+const request = supertest(app);
+
+afterAll(async () => {
+  await pool.end();
+});
 
 
-describe('POST /', function(){
-    it('', function(done){
-      request(app)
-          .post('/')
-          .send({
-              'username' : 'Kat T'
-          })
-          .expect(200)
-          .end(function(err, res){
-              done();
-          })
-    })
+describe("/user routes", () => {
+  test("GET /users", async () => {
+    const response = await request.get("/users");
+    //console.log(response.body);
+    expect(response.body.success).toBe(true);
+    expect(response.statusCode).toBe(200);
+    //assert array
   });
 
-// describe("when passed a username", () => {
-//     beforeEach(() => {
-//         createUser.mockReset()
-//       })
-//     test("should save the username in the database", async () => {
-//       const body = {
-//         username: "username"
-//       }
-//       const response = await request(app).post("/").send(body)
-//       expect(createUser.mock.calls[0][0]).toBe(body.username)
-//     })
-//   })
+  test("POST /users", async () => {
+    const body = { full_name: "Kat" };
+    const response = await request.post("/users").send(body);
+    console.log(response.body);
+    expect(response.body.payload[0].full_name).toBe(body.full_name);
+    //should this return an array of object, when it's only creating one user?
+    //test shape of object
+  });
+});
 
+describe("/users/1 routes", () => {
+  test("GET /users/1", async () => {
+    const response = await request.get("/users/1");
+    //console.log(response.body);
+    expect(response.body.success).toBe(true);
+    expect(response.statusCode).toBe(200);
+  });
 
+  test("PUT /users/1", async () => {
+    const body = {
+      user_id: user_id,
+      full_name: "Kat T",
+    };
+    const initResponse = await request.get("/users/1");
+    const response = await request.put("/users/1").send(body, user_id);
+    console.log("response", response.body);
+    console.log("initResponse", initResponse.body)
+    expect(response.body.payload[0].full_name).toBe(body.full_name);
+    //expect(initResponse.body.payload[0].full_name).not.toBe(body.full_name)
+    //should this return an array of object, when it's only creating one user?
+    //test shape of object
+  });
+});
 
-
-
-
-
-//   export async function getUserById(id) {
-//     const result = await query(`SELECT * FROM users WHERE user_id = $1;`, [id]);
-//     return result.rows;
-//   }
-  
-
-   
-  
-//     return data.rows;
-//   }
-  
-//   export async function updateUser(body) { 
-//     const full_name= body.full_name;
-//       const data = await query(
-//       `UPDATE users SET full_name = $1 WHERE user_id = $2 RETURNING full_name;`,
-//       [ full_name]
-//     );
-   
-  
-//     return data.rows;
-//   }
-  
-  
-  
+//should there be a delete user?

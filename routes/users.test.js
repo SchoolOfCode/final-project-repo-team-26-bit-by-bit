@@ -1,59 +1,9 @@
-import supertest from "supertest";
-import app from "../app.js";
 import router from "./users.js";
 import { pool } from "../db/connection.js";
-import { test, expect, afterAll, beforeEach } from "@jest/globals";
-
-//test
-const user_id = 1;
-const todo_id = 1;
-const reminder_id = 1;
-const custom_id = 1;
-
-const request = supertest(app);
+import { test, expect, afterAll} from "@jest/globals";
 
 afterAll(async () => {
   await pool.end();
-});
-
-describe("/user routes", () => {
-  test("GET /users", async () => {
-    const response = await request.get("/users");
-    console.log(response.body);
-    expect(response.body.success).toBe(true);
-    expect(response.statusCode).toBe(200);
-    //assert array
-  });
-
-  test("POST /users", async () => {
-    const body = { full_name: "Kat" };
-    const response = await request.post("/users").send(body);
-    console.log(response.body);
-    expect(response.body.payload[0].full_name).toBe(body.full_name);
-    //should this return an array of object, when it's only creating one user?
-    //test shape of object
-  });
-});
-
-describe("/user/1 routes", () => {
-  test("GET /user/1s", async () => {
-    const response = await request.get("/users/1");
-    console.log(response.body);
-    expect(response.body.success).toBe(true);
-    expect(response.statusCode).toBe(200);
-  });
-
-  test("POST /users/1", async () => {
-    const body = {
-      user_id: 1,
-      full_name: "Kat T",
-    };
-    const response = await request.put("/users/1").send(body, user_id);
-    console.log(response.body);
-    //expect(response.body.payload[0].full_name).toBe(body.full_name);
-    //should this return an array of object, when it's only creating one user?
-    //test shape of object
-  });
 });
 
 describe("Path methods", function () {

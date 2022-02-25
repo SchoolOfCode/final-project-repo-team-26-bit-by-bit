@@ -7,7 +7,6 @@ export async function getAllReminder(user_id) {
 }
 
 
-
 export async function getReminderByID(reminder_id, user_id) {
   const result = await query(
     `SELECT * FROM reminder_list WHERE reminder_id = $1 AND user_id=$2;`,
@@ -31,6 +30,7 @@ export async function createReminderList(body) {
 
   return data.rows;
 }
+// I think we only want to updae if it's changed?
 
 export async function updateReminder(body) {
   const user_id = body.user_id;
@@ -39,7 +39,7 @@ export async function updateReminder(body) {
   const iscompleted = body.iscompleted;
   const reminder_id = body.reminder_id;
   const data = await query(
-    `UPDATE reminder_list SET user_id = $1, text=$2, due_date=$3, isCompleted=$4, WHERE reminder_id = $5 RETURNING text;`,
+    `UPDATE reminder_list SET user_id = $1, text=$2, due_date=$3, isCompleted=$4 WHERE reminder_id = $5 RETURNING text;`,
     [user_id, text, due_date, iscompleted, reminder_id]
   );
   return data.rows;
