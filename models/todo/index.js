@@ -17,6 +17,7 @@ export async function getToDoByID(todo_id, user_id) {
   return result.rows;
 }
 
+// I think this needs to return more columns other than text?
 export async function createToDoList(body) {
   const user_id = body.user_id;
   const todo_id = body.todo_id;
@@ -25,7 +26,8 @@ export async function createToDoList(body) {
   const iscompleted = body.iscompleted;
 
   const data = await query(
-    `INSERT INTO todo_list (user_id, todo_id, text, priority,isCompleted) VALUES ( $1, $2, $3, $4, $5)  RETURNING text;`,
+
+    `INSERT INTO todo_list (user_id, todo_id, text, priority, isCompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING text;`,
     [user_id, todo_id, text, priority, iscompleted]
   );
   return data.rows;

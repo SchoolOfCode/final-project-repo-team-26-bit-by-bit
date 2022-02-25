@@ -34,6 +34,7 @@ export async function updateCustomSectionItem(body) {
   const user_id = body.user_id;
  const text = body.text;
  const due_date = body.due_date;
+
  const section_id = body.section_id;
   const data = await query(
     `UPDATE custom_section_item SET user_id = $1, text=$2, due_date=$3 WHERE section_id = $4 RETURNING text;`,
@@ -41,6 +42,7 @@ export async function updateCustomSectionItem(body) {
         text,
         due_date,
         section_id ]
+
   );
 
   return data.rows;

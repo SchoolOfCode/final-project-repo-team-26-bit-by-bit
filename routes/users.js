@@ -48,7 +48,6 @@ router.get("/", async function (req, res) {
 });
 
 /* GET users by ID. */
-
 router.get("/:user_id", async function (req, res) {
   const user_id = Number(req.params.user_id);
   const body = await getUserById(user_id);
@@ -69,6 +68,7 @@ router.post("/", async function (req, res) {
   });
 });
 
+/* Update user */
 router.put("/:user_id", async function (req, res) {
   const body = req.body;
   const update = await updateUser(body);
