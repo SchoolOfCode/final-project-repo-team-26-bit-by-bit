@@ -27,7 +27,7 @@ export async function createToDoList(body) {
   const iscompleted = body.iscompleted;
 
   const data = await query(
-    `INSERT INTO todo_list (user_id, text, priority,isCompleted) VALUES ( $1, $2, $3, $4, $5)  RETURNING text;`,
+    `INSERT INTO todo_list (user_id, text, priority, isCompleted) VALUES ($1, $2, $3, $4)  RETURNING text;`,
     [user_id, text, priority, iscompleted]
   );
   return data.rows;
