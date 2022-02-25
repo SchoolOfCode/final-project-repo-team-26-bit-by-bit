@@ -1,11 +1,10 @@
 import query from "../../db/connection.js";
 export async function getAllReminder(user_id) {
   const result = await query(`SELECT * FROM reminder_list WHERE user_id= $1;`, [
-    user_id
+    user_id,
   ]);
   return result.rows;
 }
-
 
 export async function getReminderByID(reminder_id, user_id) {
   const result = await query(
@@ -14,7 +13,6 @@ export async function getReminderByID(reminder_id, user_id) {
   );
   return result.rows;
 }
-
 
 export async function createReminderList(body) {
   const user_id = body.user_id;
@@ -45,8 +43,6 @@ export async function updateReminder(body) {
   return data.rows;
 }
 
-
-
 export async function deleteReminder(reminder_id, user_id) {
   const data = await query(
     `DELETE FROM reminder_list WHERE reminder_id = $1 AND user_id=$2`,
@@ -55,4 +51,10 @@ export async function deleteReminder(reminder_id, user_id) {
   return data.rows;
 }
 
-
+export async function deleteReminderByUser(user_id) {
+  const data = await query(
+    `DELETE FROM reminder_list WHERE user_id=$1`,
+    [user_id]
+  );
+  return data.rows;
+}

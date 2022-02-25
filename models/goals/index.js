@@ -65,3 +65,11 @@ export async function getAllGoals(user_id) {
     return data.rows
   
   }
+
+  export async function deleteGoalsByUser(user_id){
+  
+    const data = await query(`DELETE FROM goals WHERE user_id=$1`, [user_id])
+  
+    return data.rows
+  
+  }

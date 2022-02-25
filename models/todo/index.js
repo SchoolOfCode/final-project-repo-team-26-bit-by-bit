@@ -1,8 +1,9 @@
 import query from "../../db/connection.js";
 
-
 export async function getAllToDo(user_id) {
-  const result = await query(`SELECT * FROM todo_list WHERE user_id=$1;`, [user_id]);
+  const result = await query(`SELECT * FROM todo_list WHERE user_id=$1;`, [
+    user_id,
+  ]);
 
   return result.rows;
 }
@@ -25,7 +26,8 @@ export async function createToDoList(body) {
   const iscompleted = body.iscompleted;
 
   const data = await query(
-    `INSERT INTO todo_list (user_id, todo_id, text, priority, iscompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING text;`,
+
+    `INSERT INTO todo_list (user_id, todo_id, text, priority, isCompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING text;`,
     [user_id, todo_id, text, priority, iscompleted]
   );
   return data.rows;
@@ -49,5 +51,10 @@ export async function deleteToDo(todo_id, user_id) {
     `DELETE FROM todo_list WHERE todo_id = $1 AND user_id=$2`,
     [todo_id, user_id]
   );
+  return data.rows;
+}
+
+export async function deleteToDoByUser(user_id) {
+  const data = await query(`DELETE FROM todo_list WHERE user_id=$1`, [user_id]);
   return data.rows;
 }
