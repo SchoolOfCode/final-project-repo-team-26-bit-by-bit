@@ -22,7 +22,7 @@ export async function createReminderList(body) {
   const iscompleted = body.iscompleted;
   const data = await query(
     `INSERT INTO reminder_list (user_id, reminder_id, text,
-        due_date, isCompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING text;`,
+        due_date, isCompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING *;`,
     [user_id, reminder_id, text, due_date, iscompleted]
   );
 
@@ -37,7 +37,7 @@ export async function updateReminder(body) {
   const iscompleted = body.iscompleted;
   const reminder_id = body.reminder_id;
   const data = await query(
-    `UPDATE reminder_list SET user_id = $1, text=$2, due_date=$3, isCompleted=$4 WHERE reminder_id = $5 RETURNING text;`,
+    `UPDATE reminder_list SET user_id = $1, text=$2, due_date=$3, isCompleted=$4 WHERE reminder_id = $5 RETURNING *;`,
     [user_id, text, due_date, iscompleted, reminder_id]
   );
   return data.rows;

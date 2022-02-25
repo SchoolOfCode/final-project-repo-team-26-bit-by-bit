@@ -21,7 +21,7 @@ export async function createSettings(body) {
   const settings_id = body.settings_id;
   const is_dark = body.is_dark;
   const data = await query(
-    `INSERT INTO settings (user_id, settings_id, is_dark) VALUES ( $1, $2, $3) RETURNING is_dark;`,
+    `INSERT INTO settings (user_id, settings_id, is_dark) VALUES ( $1, $2, $3) RETURNING *;`,
     [user_id,
       settings_id,
       is_dark]
@@ -37,7 +37,7 @@ export async function updateSettings(body) {
 
   const data = await query(
     `UPDATE settings SET user_id = $1,
-    is_dark= $2 WHERE settings_id = $3 RETURNING is_dark;`,
+    is_dark= $2 WHERE settings_id = $3 RETURNING *;`,
     [user_id,
       is_dark,
       settings_id]

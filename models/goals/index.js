@@ -21,7 +21,7 @@ export async function getAllGoals(user_id) {
     const iscompleted = body.iscompleted;
     const amount = body.amount;
       const data = await query(
-      `INSERT INTO goals (user_id, goals_id, text, priority, due_date, isCompleted, amount) VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING text;`,
+      `INSERT INTO goals (user_id, goals_id, text, priority, due_date, isCompleted, amount) VALUES ( $1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
       [user_id,
         goals_id,
         text,
@@ -45,7 +45,7 @@ export async function getAllGoals(user_id) {
     const amount = body.amount;
     const goals_id = body.goals_id;
       const data = await query(
-      `UPDATE goals SET user_id = $1, text=$2, priority=$3, due_date= $4, isCompleted=$5, amount=$6 WHERE goals_id = $7 RETURNING text;`,
+      `UPDATE goals SET user_id = $1, text=$2, priority=$3, due_date= $4, isCompleted=$5, amount=$6 WHERE goals_id = $7 RETURNING *;`,
       [user_id,
         text,
         priority,

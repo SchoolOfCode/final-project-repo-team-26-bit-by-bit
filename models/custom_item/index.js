@@ -21,7 +21,7 @@ export async function createCustomSectionItem(body) {
   const text = body.text;
   const due_date = body.due_date;
   const data = await query(
-    `INSERT INTO custom_section_item (user_id, section_id, text, due_date) VALUES ( $1, $2, $3, $4) RETURNING text;`,
+    `INSERT INTO custom_section_item (user_id, section_id, text, due_date) VALUES ( $1, $2, $3, $4) RETURNING *;`,
     [user_id, section_id, text, due_date]
   );
 
@@ -37,7 +37,7 @@ export async function updateCustomSectionItem(body) {
 
  const section_id = body.section_id;
   const data = await query(
-    `UPDATE custom_section_item SET user_id = $1, text=$2, due_date=$3 WHERE section_id = $4 RETURNING text;`,
+    `UPDATE custom_section_item SET user_id = $1, text=$2, due_date=$3 WHERE section_id = $4 RETURNING *;`,
     [user_id,
         text,
         due_date,

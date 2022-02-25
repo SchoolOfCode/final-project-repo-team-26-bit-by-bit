@@ -23,7 +23,7 @@ export async function createCustom(body) {
   const data = await query(
     `INSERT INTO custom_section (user_id,
       custom_id,
-      custom_name) VALUES ( $1, $2, $3) RETURNING custom_name;`,
+      custom_name) VALUES ( $1, $2, $3) RETURNING *;`,
     [user_id, custom_id, custom_name]
   );
 
@@ -37,7 +37,7 @@ export async function updateCustom(body) {
 
   const data = await query(
     `UPDATE custom_section SET user_id = $1,
-    custom_name= $2 WHERE custom_id = $3 RETURNING custom_name;`,
+    custom_name= $2 WHERE custom_id = $3 RETURNING *;`,
     [user_id, custom_name, custom_id]
   );
 
