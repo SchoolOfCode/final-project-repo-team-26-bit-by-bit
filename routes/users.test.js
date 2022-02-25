@@ -1,6 +1,6 @@
 import router from "./users.js";
 import { pool } from "../db/connection.js";
-import { test, expect, afterAll} from "@jest/globals";
+import { test, expect, afterAll } from "@jest/globals";
 
 afterAll(async () => {
   await pool.end();
@@ -11,24 +11,51 @@ describe("Path methods", function () {
     const routes = [
       { path: "/", method: "post" },
       { path: "/", method: "get" },
+
       { path: "/:user_id", method: "get" },
       { path: "/:user_id", method: "put" },
+
       { path: "/:user_id/reminders", method: "get" },
       { path: "/:user_id/reminders", method: "post" },
-      { path: "/:user_id/custom_section", method: "get" },
-      { path: "/:user_id/custom_section", method: "post" },
-      { path: "/:user_id/todo", method: "get" },
-      { path: "/:user_id/todo", method: "post" },
-      { path: "/:user_id/goals", method: "get" },
-      { path: "/:user_id/goals", method: "post" },
-      { path: "/:user_id/settings", method: "get" },
-      { path: "/:user_id/settings", method: "post" },
+      { path: "/:user_id/reminders", method: "delete" },
       { path: "/:user_id/reminders/:reminder_id", method: "get" },
       { path: "/:user_id/reminders/:reminder_id", method: "put" },
       { path: "/:user_id/reminders/:reminder_id", method: "delete" },
+
+      { path: "/:user_id/todo", method: "get" },
+      { path: "/:user_id/todo", method: "post" },
+      { path: "/:user_id/todo", method: "delete" },
       { path: "/:user_id/todo/:todo_id", method: "get" },
       { path: "/:user_id/todo/:todo_id", method: "put" },
       { path: "/:user_id/todo/:todo_id", method: "delete" },
+
+      { path: "/:user_id/goals", method: "get" },
+      { path: "/:user_id/goals", method: "post" },
+      { path: "/:user_id/goals", method: "delete" },
+      { path: "/:user_id/goals/:goals_id", method: "get" },
+      { path: "/:user_id/goals/:goals_id", method: "put" },
+      { path: "/:user_id/goals/:goals_id", method: "delete" },
+
+      { path: "/:user_id/custom_section", method: "get" },
+      { path: "/:user_id/custom_section", method: "post" },
+      { path: "/:user_id/custom_section", method: "delete" },
+      { path: "/:user_id/custom_section/:custom_id", method: "get" },
+      { path: "/:user_id/custom_section/:custom_id", method: "put" },
+      { path: "/:user_id/custom_section/:custom_id", method: "delete" },
+
+      { path: "/:user_id/custom_item", method: "get" },
+      { path: "/:user_id/custom_item", method: "post" },
+      { path: "/:user_id/custom_item", method: "delete" },
+      { path: "/:user_id/custom_item/:section_id", method: "get" },
+      { path: "/:user_id/custom_item/:section_id", method: "put" },
+      { path: "/:user_id/custom_item/:section_id", method: "delete" },
+
+      { path: "/:user_id/settings", method: "get" },
+      { path: "/:user_id/settings", method: "post" },
+      { path: "/:user_id/settings", method: "delete" },
+      { path: "/:user_id/settings/:setting_id", method: "get" },
+      { path: "/:user_id/settings/:setting_id", method: "put" },
+      { path: "/:user_id/settings/:setting_id", method: "delete" },
     ];
     routes.forEach((route) => {
       const match = router.stack.find(
