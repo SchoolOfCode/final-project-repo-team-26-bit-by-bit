@@ -7,7 +7,7 @@ const sqlString = `CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS todo_list(
-  id int,
+  id SERIAL PRIMARY KEY,
   user_id int,
   text varchar(255),
   priority varchar(255),
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS todo_list(
 );
 
 CREATE TABLE IF NOT EXISTS reminder_list(
-  id int, 
+  id SERIAL PRIMARY KEY,
   user_id int, 
   text varchar(255),
   due_date DATE, 
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS reminder_list(
 );
 
 CREATE TABLE IF NOT EXISTS goals (
-  id int,
+  id SERIAL PRIMARY KEY,
   user_id int,
   text varchar(255),
   priority varchar(255),
@@ -36,14 +36,14 @@ CREATE TABLE IF NOT EXISTS goals (
 );
 
 CREATE TABLE IF NOT EXISTS custom_section(
-  id int,
+  id SERIAL PRIMARY KEY,
   user_id int,
   custom_name varchar(255),
   created timestamp not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS custom_section_item(
-  id int,
+  id SERIAL PRIMARY KEY,
   section_id int,
   text varchar(255),
   due_date DATE,
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS custom_section_item(
 );
 
 CREATE TABLE IF NOT EXISTS settings(
+  id SERIAL PRIMARY KEY,
   user_id int,
-  id int,
   is_dark boolean,
   created timestamp not null default CURRENT_TIMESTAMP
 );
@@ -66,7 +66,6 @@ ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE custom_section ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (id);`
-
 
 async function createTable (){
 
