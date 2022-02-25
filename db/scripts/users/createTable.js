@@ -66,8 +66,6 @@ ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE custom_section ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE custom_section_item ADD FOREIGN KEY (user_id) REFERENCES users (id);
-
 ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (id);`
 
 
