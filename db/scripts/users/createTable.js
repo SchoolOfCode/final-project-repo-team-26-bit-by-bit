@@ -58,17 +58,17 @@ CREATE TABLE IF NOT EXISTS settings(
   created timestamp not null default CURRENT_TIMESTAMP
 );
 
-ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE todo_list ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE reminder_list ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE reminder_list ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE goals ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE custom_section ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE custom_section ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE custom_section_item ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE custom_section_item ADD FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (user_id);`
+ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (id);`
 
 
 async function createTable (){
