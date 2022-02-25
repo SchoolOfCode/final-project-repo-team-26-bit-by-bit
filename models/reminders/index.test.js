@@ -28,9 +28,9 @@ describe("/users/1/reminders routes", () => {
       iscompleted: true,
     };
     const response = await request.post("/users/1/reminders").send(body);
-    //expect(Object.keys(response.body.payload[0]).length).toBe(1);
+    //console.log("reminder post", response.body);
+    expect(Object.keys(response.body.payload[0]).length).toBe(6);
     expect(Object.keys(response.body.payload[0])).toContain("text");
-    //console.log(response.body);
   });
 
   test("GET /users/1/reminders/1", async () => {
@@ -50,11 +50,10 @@ describe("/users/1/reminders routes", () => {
     };
     const initResponse = await request.get("/users/1/reminders/1");
     const response = await request.put("/users/1/reminders/1").send(body);
-    //console.log(response.body.payload[0])
+    //console.log("reminder put", response.body.payload[0]);
     expect(response.statusCode).toBe(200);
     expect(response.body.success).toBe(true);
-    //console.log(Object.keys(response.body.payload[0]).length)
-    //expect(Object.keys(response.body.payload[0]).length).toBe(6);
+    expect(Object.keys(response.body.payload[0]).length).toBe(6);
     expect(Object.keys(response.body.payload[0])).toContain("text");
     expect(initResponse.body.payload[0].text).not.toBe(body.text);
   });
