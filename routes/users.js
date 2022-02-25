@@ -75,7 +75,7 @@ router.post("/", async function (req, res) {
     // if there's no full name, return an error message
     res.json({
       success: false,
-      erroMessage: "Full name is missing",
+      errorMessage: "Full name is missing",
     });
   }
 });
