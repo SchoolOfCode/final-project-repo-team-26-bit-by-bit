@@ -21,15 +21,15 @@ describe("/users/1/reminders routes", () => {
 
   test("POST /users/1/reminders", async () => {
     const body = {
-        user_id: user_id,
-        reminder_id: reminder_id,
-        due_date: "2022-10-10",
-        text: "mop the floors",
-        iscompleted: true,
+      user_id: user_id,
+      reminder_id: reminder_id,
+      due_date: "2022-10-10",
+      text: "mop the floors",
+      iscompleted: true,
     };
     const response = await request.post("/users/1/reminders").send(body);
     expect(Object.keys(response.body.payload[0]).length).toBe(1);
-    expect(Object.keys(response.body.payload[0])).toContain('text');
+    expect(Object.keys(response.body.payload[0])).toContain("text");
     //console.log(response.body);
   });
 
@@ -42,11 +42,11 @@ describe("/users/1/reminders routes", () => {
 
   test("PUT /users/1/reminders/1", async () => {
     const body = {
-        user_id: user_id,
-        reminder_id: reminder_id,
-        text: "text2",
-        due_date: "2022-11-11",
-        iscompleted: false,
+      user_id: user_id,
+      reminder_id: reminder_id,
+      text: "text2",
+      due_date: "2022-11-11",
+      iscompleted: false,
     };
     const initResponse = await request.get("/users/1/reminders/1");
     const response = await request.put("/users/1/reminders/1").send(body);
@@ -55,20 +55,27 @@ describe("/users/1/reminders routes", () => {
     expect(response.body.success).toBe(true);
     //console.log(Object.keys(response.body.payload[0]))
     expect(Object.keys(response.body.payload[0]).length).toBe(1);
-    expect(Object.keys(response.body.payload[0])).toContain('text');
+    expect(Object.keys(response.body.payload[0])).toContain("text");
     expect(initResponse.body.payload[0].text).not.toBe(body.text);
   });
-
+  test("DELETE /users/1/reminders", async () => {
+    const body = {
+      user_id: user_id,
+      reminder_id: reminder_id,
+    };
+    const response = await request.delete("/users/1/reminders").send(body);
+    expect(response.body.success).toBe(true);
+    expect(response.statusCode).toBe(200);
+    expect(response.body.payload).toEqual([]); // return empty array
+  });
   test("DELETE /users/1/reminders/1", async () => {
     const body = {
       user_id: user_id,
-      reminder_id: reminder_id
+      reminder_id: reminder_id,
     };
     const response = await request.delete("/users/1/reminders/1").send(body);
     expect(response.body.success).toBe(true);
     expect(response.statusCode).toBe(200);
     expect(response.body.payload).toEqual([]); // return empty array
-    //should this return an array of object, when it's only creating one user?
-    //test shape of object
   });
 });
