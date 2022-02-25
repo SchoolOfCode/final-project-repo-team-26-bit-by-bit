@@ -62,11 +62,22 @@ router.get("/:user_id", async function (req, res) {
 /* POST new users to users table. */
 router.post("/", async function (req, res) {
   const body = req.body;
-  const create = await createUser(body);
-  res.json({
-    success: true,
-    payload: create,
-  });
+  const full_name = body.full_name
+  // only create a user if a full_name is passed in
+  if (full_name !== undefined && full_name != "") {
+    const create = await createUser(body);
+    res.json({
+      success: true,
+      payload: create,
+    });
+  }
+  else {
+    // if there's no full name, return an error message
+    res.json({
+      success: false,
+      errorMessage: "Full name is missing",
+    });
+  }
 });
 
 router.put("/:user_id", async function (req, res) {
