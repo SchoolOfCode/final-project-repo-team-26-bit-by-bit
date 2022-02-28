@@ -68,17 +68,13 @@ ALTER TABLE custom_section ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
 ALTER TABLE custom_section_item ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 
-ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (user_id);`
+ALTER TABLE settings ADD FOREIGN KEY (user_id) REFERENCES users (user_id);`;
 
+async function createTable() {
+  const res = await query(sqlString);
 
-async function createTable (){
-
-    const res = await query(sqlString);
-
-    console.log('Created new Table', res)
-    //calling the res through console log this is the result for query array
-
+  console.log("Created new Table", res);
+  //calling the res through console log this is the result for query array
 }
 
 createTable();
-

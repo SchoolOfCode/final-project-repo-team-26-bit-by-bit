@@ -30,14 +30,35 @@ import {
   deleteGoalsByUser,
 } from "../models/goals/index.js";
 
-import { createCustom, deleteCustom, deleteCustomByUser, getCustomByID, getCustomByUsers, updateCustom } from "../models/custom_section/index.js";
-import { createSettings, deleteSettings, deleteSettingsByUser, getAllSettingsByUser, getSettingsBySettingId, updateSettings } from "../models/settings/index.js";
-import { createCustomSectionItem, deleteCustomSectionItem, deleteCustomSectionItemByUser, getCustomSectionItemByID, getCustomSectionItemByUsers, updateCustomSectionItem } from "../models/custom_item/index.js";
-
+import {
+  createCustom,
+  deleteCustom,
+  deleteCustomByUser,
+  getCustomByID,
+  getCustomByUsers,
+  updateCustom,
+} from "../models/custom_section/index.js";
+import {
+  createSettings,
+  deleteSettings,
+  deleteSettingsByUser,
+  getAllSettingsByUser,
+  getSettingsBySettingId,
+  updateSettings,
+} from "../models/settings/index.js";
+import {
+  createCustomSectionItem,
+  deleteCustomSectionItem,
+  deleteCustomSectionItemByUser,
+  getCustomSectionItemByID,
+  getCustomSectionItemByUsers,
+  updateCustomSectionItem,
+} from "../models/custom_item/index.js";
 
 const router = express.Router();
 
 /* GET users listing. */
+//
 router.get("/", async function (req, res) {
   const body = await getAllUsers();
 
@@ -133,7 +154,6 @@ router.delete("/:user_id/todo/:todo_id", async function (req, res) {
   });
 });
 
-
 /*Delete todos by user_id*/
 router.delete("/:user_id/todo", async function (req, res) {
   const user_id = Number(req.body.user_id);
@@ -144,7 +164,6 @@ router.delete("/:user_id/todo", async function (req, res) {
     payload: remove,
   });
 });
-
 
 /* GET reminders by user ID. */
 router.get("/:user_id/reminders", async function (req, res) {
@@ -201,7 +220,6 @@ router.delete("/:user_id/reminders/:reminder_id", async function (req, res) {
   });
 });
 
-
 /* Delete reminders by user_id*/
 router.delete("/:user_id/reminders", async function (req, res) {
   const user_id = Number(req.body.user_id);
@@ -212,7 +230,7 @@ router.delete("/:user_id/reminders", async function (req, res) {
   });
 });
 
-/* GET custom_section by user_id*/ 
+/* GET custom_section by user_id*/
 router.get("/:user_id/custom_section", async function (req, res) {
   const user_id = Number(req.params.user_id);
   const custom = await getCustomByUsers(user_id);
@@ -226,7 +244,7 @@ router.get("/:user_id/custom_section", async function (req, res) {
 router.get("/:user_id/custom_section/:custom_id", async function (req, res) {
   const custom_id = Number(req.params.custom_id);
   const user_id = Number(req.params.user_id);
-  const allCustom = await getCustomByID(custom_id,user_id);
+  const allCustom = await getCustomByID(custom_id, user_id);
 
   res.json({
     success: true,
@@ -269,7 +287,6 @@ router.delete("/:user_id/custom_section/:custom_id", async function (req, res) {
   });
 });
 
-
 /* Delete whole custom_section by user_id */
 router.delete("/:user_id/custom_section", async function (req, res) {
   const user_id = Number(req.params.user_id);
@@ -280,8 +297,6 @@ router.delete("/:user_id/custom_section", async function (req, res) {
     payload: remove,
   });
 });
-
-
 
 /* GET goals by user_id. */
 router.get("/:user_id/goals", async function (req, res) {

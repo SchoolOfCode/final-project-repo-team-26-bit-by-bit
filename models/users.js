@@ -4,7 +4,7 @@ export async function getAllUsers() {
   const result = await query(`SELECT * FROM users;`);
   return result.rows;
 }
-
+//
 export async function getUserById(id) {
   const result = await query(`SELECT * FROM users WHERE user_id = $1;`, [id]);
   return result.rows;
@@ -20,7 +20,6 @@ export async function createUser(body) {
   );
   return data.rows;
 }
-
 
 export async function updateUser(body) {
   const user_id = body.user_id;

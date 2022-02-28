@@ -1,7 +1,7 @@
-import {pool} from "../../../connection.js"
+import { pool } from "../../../connection.js";
 async function dropTable() {
   const dropped = await pool.query("DROP TABLE IF EXISTS todo_list;");
-  console.log("users table deleted", dropped.command);
+  console.log("todo table deleted", dropped.command);
 }
 try {
   await dropTable();

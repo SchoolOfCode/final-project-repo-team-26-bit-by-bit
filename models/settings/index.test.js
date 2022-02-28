@@ -51,8 +51,6 @@ describe("Routes for settings", () => {
       settings_id: settings_id,
       isdark: false,
     };
-
-  
     const response = await request.put("/users/1/settings/1").send(body);
     console.log(response.body);
     expect(response.body.success).toBe(true);
