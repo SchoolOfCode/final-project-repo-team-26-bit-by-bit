@@ -20,7 +20,7 @@ describe("/user routes", () => {
   });
 
   test("POST /users", async () => {
-    const body = { full_name: "Kat" };
+    const body = { user_id: user_id, full_name: "Kat" };
     const response = await request.post("/users").send(body);
     console.log(response.body);
     expect(response.body.payload[0].full_name).toBe(body.full_name);
