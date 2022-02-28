@@ -22,12 +22,12 @@ export async function createToDoList(body) {
   const user_id = body.user_id;
   const todo_id = body.todo_id;
   const text = body.text;
+  const time = body.time;
   const priority = body.priority;
   const iscompleted = body.iscompleted;
 
   const data = await query(
-
-    `INSERT INTO todo_list (user_id, todo_id, text, priority, isCompleted) VALUES ( $1, $2, $3, $4, $5) RETURNING *;`,
+    `INSERT INTO todo_list (user_id, todo_id, text, time, priority, isCompleted) VALUES ( $1, $2, $3, $4, $5, $6) RETURNING *;`,
     [user_id, todo_id, text, priority, iscompleted]
   );
   return data.rows;
@@ -37,11 +37,12 @@ export async function updateToDo(body) {
   const user_id = body.user_id;
   const text = body.text;
   const priority = body.priority;
+  const time = body.time;
   const iscompleted = body.iscompleted;
   const todo_id = body.todo_id;
   const data = await query(
-    `UPDATE todo_list SET user_id = $1, text=$2, priority=$3, isCompleted=$4 WHERE todo_id = $5 RETURNING *;`,
-    [user_id, text, priority, iscompleted, todo_id]
+    `UPDATE todo_list SET user_id = $1, text=$2, priority=$3, isCompleted=$4, time=$5 WHERE todo_id = $6 RETURNING *;`,
+    [user_id, text, priority, iscompleted, time, todo_id]
   );
   return data.rows;
 }

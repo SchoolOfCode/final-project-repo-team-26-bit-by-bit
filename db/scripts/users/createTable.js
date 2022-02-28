@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS todo_list(
   todo_id int,
   text varchar(255),
   priority varchar(255),
+  time int,
   isCompleted boolean,
   created timestamp not null default CURRENT_TIMESTAMP
 );
