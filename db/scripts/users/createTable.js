@@ -1,7 +1,7 @@
 import query from "../../connection.js";
 
 const sqlString = `CREATE TABLE IF NOT EXISTS users(
-  user_id SERIAL PRIMARY KEY,
+  user_id INT PRIMARY KEY,
   full_name varchar(255),
   created timestamp not null default CURRENT_TIMESTAMP
 );

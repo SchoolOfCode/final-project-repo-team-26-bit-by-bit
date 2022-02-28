@@ -11,11 +11,11 @@ export async function getUserById(id) {
 }
 
 export async function createUser(body) {
-  // const user_id = body.user_id;
+  const user_id = body.user_id;
   const full_name = body.full_name;
   const data = await query(
-    `INSERT INTO users( full_name) VALUES ($1) RETURNING *;`,
-    [full_name]
+    `INSERT INTO users( user_id, full_name) VALUES ($1, $2) RETURNING *;`,
+    [user_id,full_name]
   );
   return data.rows;
 }
