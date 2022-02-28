@@ -6,13 +6,13 @@
   "scripts": {
     "start": "node ./bin/www.js",
     "db:createusers": "node -r dotenv/config ./db/scripts/users/createTable.js",
-    "db:droptodo":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteTodoTable.js",
-    "db:dropgoals":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteGoalsTable.js",
-    "db:dropcustom":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomTable.js",
-    "db:dropusers":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteUsersTable.js",
-    "db:dropSettings":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteSettingsTable.js",
-    "db:dropCustomItem":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomItemTable.js",
-    "db:dropReminder":"node -r dotenv/config ./db/scripts/users/deleteTables/deleteReminderTable.js",
+    "db:droptodo": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteTodoTable.js",
+    "db:dropgoals": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteGoalsTable.js",
+    "db:dropcustom": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomTable.js",
+    "db:dropusers": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteUsersTable.js",
+    "db:dropSettings": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteSettingsTable.js",
+    "db:dropCustomItem": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteCustomItemTable.js",
+    "db:dropReminder": "node -r dotenv/config ./db/scripts/users/deleteTables/deleteReminderTable.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
     "test": "node  -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
     "testApp": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./app.test.js",
@@ -24,7 +24,6 @@
     "testCustomI": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/custom_item/index.test.js",
     "testCustomS": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/custom_section/index.test.js",
     "testUsers": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/users.test.js"
-
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -36,8 +35,8 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.15",
     "jest": "^27.4.5",
+    "nodemon": "^2.0.15",
     "supertest": "^6.1.6"
   }
 }
