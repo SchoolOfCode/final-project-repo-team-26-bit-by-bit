@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS reminder_list(
   reminder_id int, 
   text varchar(255),
   due_date DATE, 
+  time int,
   isCompleted boolean,
   created timestamp not null default CURRENT_TIMESTAMP 
 
