@@ -10,6 +10,7 @@ export async function getUserById(id) {
   return result.rows;
 }
 
+// user_id added to the create user
 export async function createUser(body) {
   const user_id = body.user_id;
   const full_name = body.full_name;
@@ -19,6 +20,7 @@ export async function createUser(body) {
   );
   return data.rows;
 }
+
 
 export async function updateUser(body) {
   const user_id = body.user_id;
