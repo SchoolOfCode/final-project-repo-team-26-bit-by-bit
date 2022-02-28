@@ -15,7 +15,7 @@ export async function createUser(body) {
   const full_name = body.full_name;
   const data = await query(
     `INSERT INTO users( user_id, full_name) VALUES ($1, $2) RETURNING *;`,
-    [user_id,full_name]
+    [user_id, full_name]
   );
   return data.rows;
 }
