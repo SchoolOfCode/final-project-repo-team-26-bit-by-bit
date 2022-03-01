@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS reminder_list(
   time int,
   isCompleted boolean,
   created timestamp not null default CURRENT_TIMESTAMP 
-
 );
 
 CREATE TABLE IF NOT EXISTS goals (

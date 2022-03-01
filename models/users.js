@@ -15,13 +15,13 @@ export async function createUser(body) {
   const user_id = body.user_id;
   const full_name = body.full_name;
   const data = await query(
-    `INSERT IGNORE INTO users( user_id, full_name) VALUES ($1, $2) RETURNING *;`,
+    `INSERT INTO users( user_id, full_name) VALUES ($1, $2) RETURNING *;`,
     [user_id, full_name]
   );
   return data.rows;
 }
 
-// NOT SURE IF WE NEED THIS?
+// NOT SURE IF WE NEED THIS? //
 export async function updateUser(body) {
   const user_id = body.user_id;
   const full_name = body.full_name;
