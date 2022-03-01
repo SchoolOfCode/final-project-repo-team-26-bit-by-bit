@@ -29,7 +29,7 @@ export async function createReminderList(body) {
 
   return data.rows;
 }
-// I think we only want to updae if it's changed?
+// I think we only want to update if it's changed?
 
 export async function updateReminder(body) {
   const user_id = body.user_id;
