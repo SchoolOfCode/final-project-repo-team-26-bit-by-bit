@@ -21,7 +21,7 @@ export async function createSettings(body) {
   const settings_id = body.settings_id;
   const is_dark = body.is_dark;
   const data = await query(
-    `INSERT INTO settings (user_id, settings_id, is_dark) VALUES ( $1, $2, $3) RETURNING *;`,
+    `INSERT INTO settings (user_id, settings_id, is_dark) VALUES ( $1, $2, $3) ON CONFLICT DO NOTHING RETURNING *;`,
     [user_id,
       settings_id,
       is_dark]
@@ -59,6 +59,5 @@ export async function deleteSettingsByUser(user_id) {
       `DELETE FROM settings WHERE user_id = $1`,
       [user_id]
     );
-  
     return data.rows;
   }

@@ -12,6 +12,13 @@ CREATE TABLE IF NOT EXISTS todo_list(
   text varchar(255),
   priority varchar(255),
   time int,
+  isMonday boolean,
+  isTuesday boolean,
+  isWednesday boolean,
+  isThursday boolean,
+  isFriday boolean,
+  isSaturday boolean,
+  isSunday boolean,
   isCompleted boolean,
   created timestamp not null default CURRENT_TIMESTAMP
 );
