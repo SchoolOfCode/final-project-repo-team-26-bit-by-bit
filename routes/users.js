@@ -114,7 +114,7 @@ router.get("/:user_id/todo", async function (req, res) {
 router.get("/:user_id/todo/:todo_id", async function (req, res) {
   const user_id = Number(req.params.user_id);
   const todo_id = Number(req.params.todo_id);
-  const todo_list = await getToDoByID(user_id, todo_id);
+  const todo_list = await getToDoByID(todo_id, user_id);
 
   res.json({
     success: true,
