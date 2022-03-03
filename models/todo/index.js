@@ -67,9 +67,10 @@ export async function updateToDo(body) {
   const issaturday = body.issaturday;
   const issunday = body.issunday;
   const iscompleted = body.iscompleted;
+  const created = body.created;
   const todo_id = body.todo_id;
   const data = await query(
-    `UPDATE todo_list SET user_id = $1, text=$2, priority=$3, time=$4, isMonday=$5, isTuesday=$6, isWednesday=$7, isThursday=$8, isFriday=$9, isSaturday=$10, isSunday=$11, isCompleted=$12,  WHERE todo_id = $13 RETURNING *;`,
+    `UPDATE todo_list SET user_id = $1, text=$2, priority=$3, time=$4, isMonday=$5, isTuesday=$6, isWednesday=$7, isThursday=$8, isFriday=$9, isSaturday=$10, isSunday=$11, isCompleted=$12, created=$13  WHERE todo_id = $14 RETURNING *;`,
     [
       user_id,
       text,
@@ -83,6 +84,7 @@ export async function updateToDo(body) {
       issaturday,
       issunday,
       iscompleted,
+      created,
       todo_id,
     ]
   );
