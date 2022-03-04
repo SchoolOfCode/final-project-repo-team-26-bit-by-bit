@@ -37,10 +37,11 @@ export async function updateReminder(body) {
   const due_date = body.due_date;
   const time = body.time;
   const iscompleted = body.iscompleted;
+  const created = body.created;
   const reminder_id = body.reminder_id;
   const data = await query(
-    `UPDATE reminder_list SET user_id = $1, text=$2, due_date=$3, time=$4, isCompleted=$5 WHERE reminder_id = $6 RETURNING *;`,
-    [user_id, text, due_date, time, iscompleted, reminder_id]
+    `UPDATE reminder_list SET user_id = $1, text=$2, due_date=$3, time=$4, isCompleted=$5, created=$6 WHERE reminder_id = $7 RETURNING *;`,
+    [user_id, text, due_date, time, iscompleted, created, reminder_id]
   );
   return data.rows;
 }
