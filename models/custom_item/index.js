@@ -7,7 +7,7 @@ export async function getCustomSectionItemByUsers(user_id) {
   );
   return result.rows;
 }
-////
+//
 export async function getCustomSectionItemByID(section_id, user_id) {
   const result = await query(
     `SELECT * FROM custom_section_item WHERE section_id = $1 AND user_id = $2;`,
