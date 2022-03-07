@@ -1,7 +1,7 @@
-import supertest from "supertest";
-import app from "../../app.js";
 import { pool } from "../../db/connection.js";
 import { test, expect, afterAll } from "@jest/globals";
+import supertest from "supertest";
+import app from "../../app.js";
 
 const reminder_id = 1;
 const user_id = 1;

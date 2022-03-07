@@ -1,11 +1,32 @@
 import supertest from "supertest";
-import app from "../../app.js";
+import app3 from "../../app.js";
 import { pool } from "../../db/connection.js";
 import { test, expect, afterAll } from "@jest/globals";
 
 const section_id = 1;
 const user_id = 1;
-const request = supertest(app);
+
+const app2 = jest.mock("../../app.js", () => {
+  const app = jest.requireActual("../../app.js");
+  return app2;
+});
+const request = supertest(app2);
+// const mockDb = {
+//   get: jest.fn(),
+//   set: jest.fn(),
+// };
+// const db = mockDb;
+// jest.mock("../../app.js", () => mockDb);
+
+// This doesn't work
+// const request = supertest(app);
+//   return {
+//     __esModule: true,
+//     ...originalModule,
+//     default: jest.fn(() => 'mocked baz'),
+//     foo: 'mocked foo',
+//   };
+// });
 
 afterAll(async () => {
   await pool.end();

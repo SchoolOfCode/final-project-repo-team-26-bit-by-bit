@@ -35,13 +35,12 @@ CREATE TABLE IF NOT EXISTS reminder_list(
 
 CREATE TABLE IF NOT EXISTS goals (
   user_id int,
-  goals_id int ,
+  goals_id int,
   text varchar(255),
-  priority varchar(255),
-  due_date DATE,
-  isCompleted boolean,
   amount int,
-  created date not null default CURRENT_DATE
+  currentAmount int,
+  isCompleted boolean,
+  created timestamp not null default CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE IF NOT EXISTS custom_section(
