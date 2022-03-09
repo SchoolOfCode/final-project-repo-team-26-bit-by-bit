@@ -45,6 +45,8 @@ export async function updateGoals(body) {
 
   return data.rows;
 }
+
+
 export async function deleteGoals(goals_id, user_id) {
   const data = await query(
     `DELETE FROM goals WHERE goals_id = $1 AND user_id=$2`,

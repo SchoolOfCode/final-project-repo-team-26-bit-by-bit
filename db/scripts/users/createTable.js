@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS todo_list(
   todo_id int,
   text varchar(255),
   priority varchar(255),
-  time int,
+  time TIME,
   isMonday boolean,
   isTuesday boolean,
   isWednesday boolean,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS reminder_list(
   reminder_id int, 
   text varchar(255),
   due_date DATE, 
-  time int,
+  time TIME,
   isCompleted boolean,
   created timestamp not null default CURRENT_TIMESTAMP 
 );

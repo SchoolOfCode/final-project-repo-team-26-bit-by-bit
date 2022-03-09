@@ -91,6 +91,18 @@ export async function updateToDo(body) {
   return data.rows;
 }
 
+
+export async function updateToDo(body) {
+  const user_id = body.user_id;
+  const iscompleted = body.iscompleted;
+  const data = await query(
+    `UPDATE todo_list SET isCompleted=$1 WHERE user_id = $2 RETURNING *;`,
+    [ user_id, iscompleted,
+    ]
+  );
+  return data.rows;
+}
+
 export async function deleteToDo(todo_id, user_id) {
   const data = await query(
     `DELETE FROM todo_list WHERE todo_id = $1 AND user_id=$2`,

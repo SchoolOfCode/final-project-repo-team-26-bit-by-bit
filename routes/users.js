@@ -25,6 +25,7 @@ import {
   getAllGoals,
   createGoals,
   updateGoals,
+  updateCompletedGoals,
   deleteGoals,
   getGoalsById,
   deleteGoalsByUser,
@@ -325,6 +326,15 @@ router.get("/:user_id/goals/:goals_id", async function (req, res) {
 router.post("/:user_id/goals", async function (req, res) {
   const body = req.body;
   const create = await createGoals(body);
+  res.json({
+    success: true,
+    payload: create,
+  });
+});
+
+router.patch("/:user_id/goals", async function (req, res) {
+  const body = req.body;
+  const create = await updateCompletedGoals(body);
   res.json({
     success: true,
     payload: create,
