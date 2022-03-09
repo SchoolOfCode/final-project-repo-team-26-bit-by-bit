@@ -10,6 +10,7 @@ import {
   getToDoByID,
   createToDoList,
   updateToDo,
+  patchToDo,
   deleteToDo,
   deleteToDoByUser,
 } from "../models/todo/index.js";
@@ -25,7 +26,6 @@ import {
   getAllGoals,
   createGoals,
   updateGoals,
-  updateCompletedGoals,
   deleteGoals,
   getGoalsById,
   deleteGoalsByUser,
@@ -127,6 +127,15 @@ router.get("/:user_id/todo/:todo_id", async function (req, res) {
 router.post("/:user_id/todo", async function (req, res) {
   const body = req.body;
   const created = await createToDoList(body);
+  res.json({
+    success: true,
+    payload: created,
+  });
+});
+
+router.patch("/:user_id/todo", async function (req, res) {
+  const body = req.body;
+  const created = await patchToDo(body);
   res.json({
     success: true,
     payload: created,

@@ -92,7 +92,7 @@ export async function updateToDo(body) {
 }
 
 
-export async function updateToDo(body) {
+export async function patchToDo(body) {
   const user_id = body.user_id;
   const iscompleted = body.iscompleted;
   const data = await query(
