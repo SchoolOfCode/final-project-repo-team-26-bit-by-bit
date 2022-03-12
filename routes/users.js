@@ -145,7 +145,7 @@ router.put("/:user_id/todo/:todo_id", async function (req, res) {
 /*Delete todos by user_id & todo_id*/
 router.delete("/:user_id/todo/:todo_id", async function (req, res) {
   const todo_id = Number(req.params.todo_id);
-  const user_id = Number(req.body.user_id);
+  const user_id = Number(req.params.user_id);
   const remove = await deleteToDo(todo_id, user_id);
 
   res.json({
@@ -156,7 +156,7 @@ router.delete("/:user_id/todo/:todo_id", async function (req, res) {
 
 /*Delete todos by user_id*/
 router.delete("/:user_id/todo", async function (req, res) {
-  const user_id = Number(req.body.user_id);
+  const user_id = Number(req.params.user_id);
   const remove = await deleteToDoByUser(user_id);
 
   res.json({
@@ -212,7 +212,7 @@ router.put("/:user_id/reminders/:reminder_id", async function (req, res) {
 
 router.delete("/:user_id/reminders/:reminder_id", async function (req, res) {
   const reminder_id = Number(req.params.reminder_id);
-  const user_id = Number(req.body.user_id);
+  const user_id = Number(req.params.user_id);
   const remove = await deleteReminder(reminder_id, user_id);
   res.json({
     success: true,
@@ -222,7 +222,7 @@ router.delete("/:user_id/reminders/:reminder_id", async function (req, res) {
 
 /* Delete reminders by user_id*/
 router.delete("/:user_id/reminders", async function (req, res) {
-  const user_id = Number(req.body.user_id);
+  const user_id = Number(req.params.user_id);
   const remove = await deleteReminderByUser(user_id);
   res.json({
     success: true,
