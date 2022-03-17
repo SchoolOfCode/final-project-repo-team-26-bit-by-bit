@@ -6,12 +6,11 @@ This backend create RESTful API architectural style Database HTTP can be handle 
  
 <img align="center" alt="DataModel" width="700px" src="./public/css/Image/datamodel.png" style="padding-right:50px;" />  
 
-data modelling drawing was made by 
-https://dbdiagram.io/d
+
 
 ## Connection:  
 
-Enviromental variable used to connect database.  
+Enviromental variable used to connect between backend and Heroku Database.  
 
 So need to create .env file and that file should have DATABASE_URL details without quotation mark and space see below example 
 example: .env
@@ -23,34 +22,40 @@ DATABASE_URL=CONNECTIONDETAILS
 <img align="left" alt="Visual Studio Code" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" style="padding-right:15px;" />  
 
 <img align="left" alt="JavaScript" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:15px;" />  
+<img align="left" alt="Visual Studio Code" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" style="padding-right:15px;" /> 
 
 <img align="left" alt="JavaScript" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" style="padding-right:15px;" />  
 
-<img align="left" alt="JavaScript" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" style="padding-right:15px;" />  
+<img align="left" alt="JavaScript" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" style="padding-right:15px;" /> 
+
+<img align="left" alt="JavaScript" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" style="padding-right:15px;" />  
+
   
 --
 
 ## Scripts  
 
-NODEMON -- npm run dev 
-create table -- npm run db:createusers
-test scripts -  npm run testApp
-                npm run testRoutes
-                npm run testReminders
-                npm run testTodo
-                npm run testSetting
-                npm run testGoals
-                npm run testCustomS
-                npm run testCustomItem
-                npm run testUsers
-delete individual table-----npm run db:droptodo
-                            npm run db:dropgoals
-                            npm run db:dropcustom
-                            npm run db:dropusers
-                            npm run db:dropSettings
-                            npm run db:dropCustomItem
-                            npm run db:dropReminder 
-                            npm run db:dropUsers
+#### NODEMON -- npm run dev 
+#### create table -- npm run db:createusers
+#### test scripts 
+                - npm run testApp
+                - npm run testRoutes
+                - npm run testReminders
+                - npm run testTodo
+                - npm run testSetting
+                - npm run testGoals
+                - npm run testCustomS
+                - npm run testCustomItem
+                - npm run testUsers
+#### delete individual table
+                            - npm run db:droptodo
+                            - npm run db:dropgoals
+                            - npm run db:dropcustom
+                            - npm run db:dropusers
+                            - npm run db:dropSettings
+                            - npm run db:dropCustomItem
+                            - npm run db:dropReminder 
+                            - npm run db:dropUsers
 ## API Reference
 
 ### Get all users
