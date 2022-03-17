@@ -1,10 +1,13 @@
-# CRUD functionality and Jest Supertest  
+# Simple Database  
 
 This backend create RESTful API architectural style Database HTTP can be handle GET, PUT, POST and DELETE data types  
 
-## DataModel:  
+## DataModel: 
+ 
+<img align="center" alt="DataModel" width="700px" src="./public/css/Image/datamodel.png" style="padding-right:50px;" />  
+
 data modelling drawing was made by 
-https://dbdiagram.io/d<img align="left" alt="DataModel" width="700px" src="./public/css/Image/datamodel.png" style="padding-right:50px;" />  --
+https://dbdiagram.io/d
 
 ## Connection:  
 
