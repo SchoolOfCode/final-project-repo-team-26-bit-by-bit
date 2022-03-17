@@ -31,6 +31,7 @@ describe("/users/1/todo routes", () => {
       text: "text",
       priority: "high",
       iscompleted: true,
+      "created": "2022-03-13T01:50:10.476Z",
     };
     const response = await request.post("/users/1/todo").send(body);
     expect(response.body.payload[0].text).toBe(body.text);
@@ -45,18 +46,16 @@ describe("/users/1/todo routes", () => {
       priority: "low",
       iscompleted: false, //set from true
       todo_id: todo_id,
+      "created": "2022-03-13T01:50:10.476Z"
     };
     const initialResponse = await request.get("/users/1/todo/1");
     const updatedResponse = await request.put("/users/1/todo/1").send(body);
     console.log(updatedResponse.body);
     expect(initialResponse.body.payload[0].text).not.toBe(body.text);
     expect(updatedResponse.body.success).toBe(true);
-    //expect(Object.keys(updatedResponse.body.payload[0]).length).toBe(1);
     expect(Object.keys(updatedResponse.body.payload[0])).toContain("text");
     expect(updatedResponse.body.payload[0].text).toBe(body.text);
-    // ToDo: change createToDo/updateToDo
-    // expect(before.iscompleted).not.toBe(after.iscompleted);
-    // expect(before.priority).not.toBe(after.priority);
+ 
   });
   test("DELETE /users/1/todo", async () => {
     const body = {

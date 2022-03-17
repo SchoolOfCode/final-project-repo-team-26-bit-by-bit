@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
+  padding-bottom: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('./Image/simple.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 a {
   color: #00B7FF;
+}
+
+h2 h3{
+  display: flex;
+  text-align: center;
+  
+}
+
+a:hover{
+  background: red;
+}
+
+.flex-container{
+  border: 1px solid red;
+  border-radius: 10px;
+  width: 400px;
+  padding: 10px;
 }

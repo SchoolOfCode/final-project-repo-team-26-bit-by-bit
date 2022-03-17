@@ -4,7 +4,6 @@ import __dirname from "./dirname.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import logger from "morgan";
-import createError from "http-errors";
 import usersRouter from "./routes/users.js";
 
 const app = express();

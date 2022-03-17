@@ -21,8 +21,8 @@
     "testTodo": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/todo/index.test.js",
     "testSettings": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/settings/index.test.js",
     "testGoals": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/goals/index.test.js",
-    "testCustomI": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/custom_item/index.test.js",
     "testCustomS": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/custom_section/index.test.js",
+    "testCustomItem": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/custom_item/index.test.js",
     "testUsers": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js ./models/users.test.js"
   },
   "dependencies": {

@@ -26,10 +26,11 @@ describe("/users/1/reminders routes", () => {
       due_date: "2022-10-10",
       text: "mop the floors",
       iscompleted: true,
+      "created": "2022-03-13T01:50:10.476Z"
     };
     const response = await request.post("/users/1/reminders").send(body);
     //console.log("reminder post", response.body);
-    expect(Object.keys(response.body.payload[0]).length).toBe(6);
+    expect(Object.keys(response.body.payload[0]).length).toBe(7);
     expect(Object.keys(response.body.payload[0])).toContain("text");
   });
 
@@ -47,15 +48,15 @@ describe("/users/1/reminders routes", () => {
       text: "text2",
       due_date: "2022-11-11",
       iscompleted: false,
+      "created": "2022-03-13T01:50:10.476Z"
     };
-    const initResponse = await request.get("/users/1/reminders/1");
-    const response = await request.put("/users/1/reminders/1").send(body);
+    const initialResponse = await request.get("/users/1/reminders/1");
+    const updatedResponse = await request.put("/users/1/reminders/1").send(body);
     //console.log("reminder put", response.body.payload[0]);
-    expect(response.statusCode).toBe(200);
-    expect(response.body.success).toBe(true);
-    expect(Object.keys(response.body.payload[0]).length).toBe(6);
-    expect(Object.keys(response.body.payload[0])).toContain("text");
-    expect(initResponse.body.payload[0].text).not.toBe(body.text);
+    expect(initialResponse.body.payload[0].text).not.toBe(body.text);
+    expect(updatedResponse.body.success).toBe(true);
+    expect(Object.keys(updatedResponse.body.payload[0])).toContain("text");
+    expect(updatedResponse.body.payload[0].text).toBe(body.text);
   });
   test("DELETE /users/1/reminders", async () => {
     const body = {

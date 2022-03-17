@@ -20,12 +20,9 @@ describe("/user routes", () => {
   });
 
   test("POST /users", async () => {
-    const body = { user_id: user_id, full_name: "Kat" };
+    const body = { user_id: user_id, full_name: "Kat T" };
     const response = await request.post("/users").send(body);
-    console.log(response.body);
-    expect(response.body.payload[0].full_name).toBe(body.full_name);
-    //should this return an array of object, when it's only creating one user?
-    //test shape of object
+   
     expect(response.body.success).toBe(true);
     expect(response.statusCode).toBe(200);
   });

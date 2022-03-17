@@ -33,11 +33,12 @@ describe("goals routes", () => {
       due_date: "2022-11-11",
       iscompleted: true,
       amount: 3,
+      "created": "2022-03-13T01:50:10.476Z",
     };
     const response = await request.post("/users/1/goals").send(body);
     console.log("goals post", response.body);
     expect(Object.keys(response.body)).toContain("payload");
-    expect(Object.keys(response.body.payload[0]).length).toBe(8);
+    expect(Object.keys(response.body.payload[0]).length).toBe(7);
     expect(response.body.success).toBe(true);
     expect(response.statusCode).toBe(200);
   });
@@ -50,16 +51,16 @@ describe("goals routes", () => {
       due_date: "2022-10-10",
       iscompleted: true,
       amount: 3,
+     
     };
-    const initResponse = await request.get("/users/1/goals/1");
-    const response = await request.put("/users/1/goals/1").send(body);
-    console.log("goals put", response.body);
-    expect(Object.keys(response.body.payload[0]).length).toBe(8);
-    expect(Object.keys(response.body)).toContain("payload");
-    expect(response.body.success).toBe(true);
-    expect(response.statusCode).toBe(200);
-    expect(initResponse.body.payload[0].text).not.toBe(body.text);
-    expect(initResponse.body.payload[0].priority).not.toBe(body.priority);
+    const initialResponse = await request.get("/users/1/goals/1");
+    const updatedResponse = await request.put("/users/1/goals/1").send(body);
+    expect(Object.keys(initialResponse.body.payload[0]).length).toBe(7);
+    expect(Object.keys(initialResponse.body)).toContain("payload");
+    expect(updatedResponse.body.success).toBe(true);
+    expect(updatedResponse.statusCode).toBe(200);
+    expect(initialResponse.body.payload[0].text).not.toBe(body.text);
+    expect(initialResponse.body.payload[0].priority).not.toBe(body.priority);
   });
   test("DELETE /users/1/goals", async () => {
     const response = await request.delete("/users/1/goals");
