@@ -75,7 +75,7 @@ DATABASE_URL=CONNECTIONDETAILS
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `user_id`      | `string` | **Required**. Id of users to fetch |
+| `user_id`      | `int` | **Required**. Id of users to fetch |
 
 
 ### Get user todo
@@ -86,7 +86,7 @@ DATABASE_URL=CONNECTIONDETAILS
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `user_id`      | `string` | **Required**. Id of users to fetch |
+| `user_id`      | `int` | **Required**. Id of users to fetch |
 
 ### Get a todo
 ```http
@@ -95,7 +95,7 @@ DATABASE_URL=CONNECTIONDETAILS
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `user_id and todo_id`      | `string` | **Required**. Id of users and todo  to fetch |
+| `user_id and todo_id`      | `int` | **Required**. Id of users and todo  to fetch |
 
 Same operation all other routes only need to change specific table name and table id for the routes.
 
