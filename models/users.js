@@ -10,6 +10,9 @@ export async function getUserById(id) {
   return result.rows;
 }
 
+
+
+
 // user_id added to the create user//
 export async function createUser(body) {
   const user_id = body.user_id;
@@ -29,6 +32,12 @@ export async function updateUser(body) {
     `UPDATE users SET full_name = $1 WHERE user_id = $2 RETURNING *;`,
     [full_name, user_id]
   );
+
+  return data.rows;
+}
+
+export async function deleteUserById(user_id) {
+  const data = await query(`DELETE FROM users WHERE user_id=$1`, [user_id]);
 
   return data.rows;
 }

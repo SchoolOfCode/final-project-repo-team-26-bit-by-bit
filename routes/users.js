@@ -4,6 +4,7 @@ import {
   createUser,
   getUserById,
   updateUser,
+  deleteUserById,
 } from "../models/users.js";
 import {
   getAllToDo,
@@ -96,6 +97,16 @@ router.put("/:user_id", async function (req, res) {
   res.json({
     success: true,
     payload: update,
+  });
+});
+
+router.delete("/:user_id", async function (req, res) {
+  const user_id = Number(req.params.user_id);
+  const remove = await deleteUserById(user_id);
+
+  res.json({
+    success: true,
+    payload: remove,
   });
 });
 
